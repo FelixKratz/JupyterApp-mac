@@ -1,0 +1,608 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DC07E9D7255F1F4B0033B0C9 /* ConsoleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC07E9D6255F1F4B0033B0C9 /* ConsoleController.swift */; };
+		DC07E9D9255F387D0033B0C9 /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC07E9D8255F387D0033B0C9 /* WindowController.swift */; };
+		DC42DAEF25599080007D20CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC42DAEE25599080007D20CB /* AppDelegate.swift */; };
+		DC42DAF125599081007D20CB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC42DAF025599081007D20CB /* ViewController.swift */; };
+		DC42DAF325599082007D20CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC42DAF225599082007D20CB /* Assets.xcassets */; };
+		DC42DAF625599082007D20CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC42DAF425599082007D20CB /* Main.storyboard */; };
+		DC42DB0225599083007D20CB /* JupyterLabTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC42DB0125599083007D20CB /* JupyterLabTests.swift */; };
+		DC42DB0D25599083007D20CB /* JupyterLabUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC42DB0C25599083007D20CB /* JupyterLabUITests.swift */; };
+		DC9CF85D255F01E100946AD4 /* WebsiteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9CF85C255F01E100946AD4 /* WebsiteController.swift */; };
+		DC9DF6EA2559A09F00C3A7BB /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC9DF6E92559A09F00C3A7BB /* WebKit.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DC42DAFE25599083007D20CB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DC42DAE325599080007D20CB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DC42DAEA25599080007D20CB;
+			remoteInfo = JupyterLab;
+		};
+		DC42DB0925599083007D20CB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DC42DAE325599080007D20CB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DC42DAEA25599080007D20CB;
+			remoteInfo = JupyterLab;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		DC07E9D6255F1F4B0033B0C9 /* ConsoleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsoleController.swift; sourceTree = "<group>"; };
+		DC07E9D8255F387D0033B0C9 /* WindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowController.swift; sourceTree = "<group>"; };
+		DC42DAEB25599080007D20CB /* JupyterLab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JupyterLab.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC42DAEE25599080007D20CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		DC42DAF025599081007D20CB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		DC42DAF225599082007D20CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DC42DAF525599082007D20CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		DC42DAF725599082007D20CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DC42DAF825599082007D20CB /* JupyterLab.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = JupyterLab.entitlements; sourceTree = "<group>"; };
+		DC42DAFD25599083007D20CB /* JupyterLabTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JupyterLabTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC42DB0125599083007D20CB /* JupyterLabTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JupyterLabTests.swift; sourceTree = "<group>"; };
+		DC42DB0325599083007D20CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DC42DB0825599083007D20CB /* JupyterLabUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JupyterLabUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC42DB0C25599083007D20CB /* JupyterLabUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JupyterLabUITests.swift; sourceTree = "<group>"; };
+		DC42DB0E25599083007D20CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DC9CF85C255F01E100946AD4 /* WebsiteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebsiteController.swift; sourceTree = "<group>"; };
+		DC9DF6E92559A09F00C3A7BB /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DC42DAE825599080007D20CB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC9DF6EA2559A09F00C3A7BB /* WebKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC42DAFA25599083007D20CB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC42DB0525599083007D20CB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DC42DAE225599080007D20CB = {
+			isa = PBXGroup;
+			children = (
+				DC42DAED25599080007D20CB /* JupyterLab */,
+				DC42DB0025599083007D20CB /* JupyterLabTests */,
+				DC42DB0B25599083007D20CB /* JupyterLabUITests */,
+				DC42DAEC25599080007D20CB /* Products */,
+				DC9DF6E82559A09F00C3A7BB /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		DC42DAEC25599080007D20CB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DC42DAEB25599080007D20CB /* JupyterLab.app */,
+				DC42DAFD25599083007D20CB /* JupyterLabTests.xctest */,
+				DC42DB0825599083007D20CB /* JupyterLabUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DC42DAED25599080007D20CB /* JupyterLab */ = {
+			isa = PBXGroup;
+			children = (
+				DC42DAEE25599080007D20CB /* AppDelegate.swift */,
+				DC42DAF025599081007D20CB /* ViewController.swift */,
+				DC42DAF225599082007D20CB /* Assets.xcassets */,
+				DC42DAF425599082007D20CB /* Main.storyboard */,
+				DC42DAF725599082007D20CB /* Info.plist */,
+				DC42DAF825599082007D20CB /* JupyterLab.entitlements */,
+				DC9CF85C255F01E100946AD4 /* WebsiteController.swift */,
+				DC07E9D6255F1F4B0033B0C9 /* ConsoleController.swift */,
+				DC07E9D8255F387D0033B0C9 /* WindowController.swift */,
+			);
+			path = JupyterLab;
+			sourceTree = "<group>";
+		};
+		DC42DB0025599083007D20CB /* JupyterLabTests */ = {
+			isa = PBXGroup;
+			children = (
+				DC42DB0125599083007D20CB /* JupyterLabTests.swift */,
+				DC42DB0325599083007D20CB /* Info.plist */,
+			);
+			path = JupyterLabTests;
+			sourceTree = "<group>";
+		};
+		DC42DB0B25599083007D20CB /* JupyterLabUITests */ = {
+			isa = PBXGroup;
+			children = (
+				DC42DB0C25599083007D20CB /* JupyterLabUITests.swift */,
+				DC42DB0E25599083007D20CB /* Info.plist */,
+			);
+			path = JupyterLabUITests;
+			sourceTree = "<group>";
+		};
+		DC9DF6E82559A09F00C3A7BB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DC9DF6E92559A09F00C3A7BB /* WebKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DC42DAEA25599080007D20CB /* JupyterLab */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DC42DB1125599083007D20CB /* Build configuration list for PBXNativeTarget "JupyterLab" */;
+			buildPhases = (
+				DC42DAE725599080007D20CB /* Sources */,
+				DC42DAE825599080007D20CB /* Frameworks */,
+				DC42DAE925599080007D20CB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JupyterLab;
+			productName = JupyterLab;
+			productReference = DC42DAEB25599080007D20CB /* JupyterLab.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DC42DAFC25599083007D20CB /* JupyterLabTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DC42DB1425599083007D20CB /* Build configuration list for PBXNativeTarget "JupyterLabTests" */;
+			buildPhases = (
+				DC42DAF925599083007D20CB /* Sources */,
+				DC42DAFA25599083007D20CB /* Frameworks */,
+				DC42DAFB25599083007D20CB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DC42DAFF25599083007D20CB /* PBXTargetDependency */,
+			);
+			name = JupyterLabTests;
+			productName = JupyterLabTests;
+			productReference = DC42DAFD25599083007D20CB /* JupyterLabTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		DC42DB0725599083007D20CB /* JupyterLabUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DC42DB1725599083007D20CB /* Build configuration list for PBXNativeTarget "JupyterLabUITests" */;
+			buildPhases = (
+				DC42DB0425599083007D20CB /* Sources */,
+				DC42DB0525599083007D20CB /* Frameworks */,
+				DC42DB0625599083007D20CB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DC42DB0A25599083007D20CB /* PBXTargetDependency */,
+			);
+			name = JupyterLabUITests;
+			productName = JupyterLabUITests;
+			productReference = DC42DB0825599083007D20CB /* JupyterLabUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DC42DAE325599080007D20CB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1100;
+				LastUpgradeCheck = 1100;
+				ORGANIZATIONNAME = fk;
+				TargetAttributes = {
+					DC42DAEA25599080007D20CB = {
+						CreatedOnToolsVersion = 11.0;
+					};
+					DC42DAFC25599083007D20CB = {
+						CreatedOnToolsVersion = 11.0;
+						TestTargetID = DC42DAEA25599080007D20CB;
+					};
+					DC42DB0725599083007D20CB = {
+						CreatedOnToolsVersion = 11.0;
+						TestTargetID = DC42DAEA25599080007D20CB;
+					};
+				};
+			};
+			buildConfigurationList = DC42DAE625599080007D20CB /* Build configuration list for PBXProject "JupyterLab" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DC42DAE225599080007D20CB;
+			productRefGroup = DC42DAEC25599080007D20CB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DC42DAEA25599080007D20CB /* JupyterLab */,
+				DC42DAFC25599083007D20CB /* JupyterLabTests */,
+				DC42DB0725599083007D20CB /* JupyterLabUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DC42DAE925599080007D20CB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC42DAF325599082007D20CB /* Assets.xcassets in Resources */,
+				DC42DAF625599082007D20CB /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC42DAFB25599083007D20CB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC42DB0625599083007D20CB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DC42DAE725599080007D20CB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC9CF85D255F01E100946AD4 /* WebsiteController.swift in Sources */,
+				DC07E9D9255F387D0033B0C9 /* WindowController.swift in Sources */,
+				DC07E9D7255F1F4B0033B0C9 /* ConsoleController.swift in Sources */,
+				DC42DAF125599081007D20CB /* ViewController.swift in Sources */,
+				DC42DAEF25599080007D20CB /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC42DAF925599083007D20CB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC42DB0225599083007D20CB /* JupyterLabTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC42DB0425599083007D20CB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC42DB0D25599083007D20CB /* JupyterLabUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DC42DAFF25599083007D20CB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DC42DAEA25599080007D20CB /* JupyterLab */;
+			targetProxy = DC42DAFE25599083007D20CB /* PBXContainerItemProxy */;
+		};
+		DC42DB0A25599083007D20CB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DC42DAEA25599080007D20CB /* JupyterLab */;
+			targetProxy = DC42DB0925599083007D20CB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		DC42DAF425599082007D20CB /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DC42DAF525599082007D20CB /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DC42DB0F25599083007D20CB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		DC42DB1025599083007D20CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		DC42DB1225599083007D20CB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = JupyterLab/JupyterLab.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = DQ6R9YE8BF;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = JupyterLab/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = fk.JupyterLab;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		DC42DB1325599083007D20CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = JupyterLab/JupyterLab.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = DQ6R9YE8BF;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = JupyterLab/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = fk.JupyterLab;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		DC42DB1525599083007D20CB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = DQ6R9YE8BF;
+				INFOPLIST_FILE = JupyterLabTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				PRODUCT_BUNDLE_IDENTIFIER = fk.JupyterLabTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JupyterLab.app/Contents/MacOS/JupyterLab";
+			};
+			name = Debug;
+		};
+		DC42DB1625599083007D20CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = DQ6R9YE8BF;
+				INFOPLIST_FILE = JupyterLabTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				PRODUCT_BUNDLE_IDENTIFIER = fk.JupyterLabTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JupyterLab.app/Contents/MacOS/JupyterLab";
+			};
+			name = Release;
+		};
+		DC42DB1825599083007D20CB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = DQ6R9YE8BF;
+				INFOPLIST_FILE = JupyterLabUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = fk.JupyterLabUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = JupyterLab;
+			};
+			name = Debug;
+		};
+		DC42DB1925599083007D20CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = DQ6R9YE8BF;
+				INFOPLIST_FILE = JupyterLabUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = fk.JupyterLabUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = JupyterLab;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DC42DAE625599080007D20CB /* Build configuration list for PBXProject "JupyterLab" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC42DB0F25599083007D20CB /* Debug */,
+				DC42DB1025599083007D20CB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DC42DB1125599083007D20CB /* Build configuration list for PBXNativeTarget "JupyterLab" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC42DB1225599083007D20CB /* Debug */,
+				DC42DB1325599083007D20CB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DC42DB1425599083007D20CB /* Build configuration list for PBXNativeTarget "JupyterLabTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC42DB1525599083007D20CB /* Debug */,
+				DC42DB1625599083007D20CB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DC42DB1725599083007D20CB /* Build configuration list for PBXNativeTarget "JupyterLabUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC42DB1825599083007D20CB /* Debug */,
+				DC42DB1925599083007D20CB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DC42DAE325599080007D20CB /* Project object */;
+}
