@@ -11,29 +11,36 @@ import Foundation
 class ConsoleController {
     private let task : Process
     private let outPipe : Pipe
-    private let errPipe : Pipe
     private let inPipe : Pipe
+    private let errPipe : Pipe
     
     private let outputHandle : FileHandle
+    private let errorHandle : FileHandle
     private let inputHandle : FileHandle
     
     var dataObserver: NSObjectProtocol!
     let notificationCenter = NotificationCenter.default
     let dataNotificationName = NSNotification.Name.NSFileHandleDataAvailable
-    
+    let viewController : ViewController
     var output : String = ""
+    var formattedOutput : String = ""
 
     
-    init() {
+    init(_viewController : ViewController) {
+        viewController = _viewController
         task = Process()
         outPipe = Pipe()
         outputHandle = outPipe.fileHandleForReading
         outputHandle.waitForDataInBackgroundAndNotify()
-        task.standardOutput = outPipe
+        
         inPipe = Pipe()
         inputHandle = inPipe.fileHandleForWriting
-        task.standardInput = inPipe
+        
         errPipe = Pipe()
+        errorHandle = errPipe.fileHandleForReading
+        
+        task.standardOutput = outPipe
+        task.standardInput = inPipe
         task.standardError = outPipe
         
         dataObserver = notificationCenter.addObserver(forName: dataNotificationName, object: outputHandle, queue: nil) {  notification in
@@ -43,21 +50,87 @@ class ConsoleController {
                 return
             }
             if let line = String(data: data, encoding: .utf8) {
-                self.output = self.output + line
+                self.output += line
             }
+            self.viewController.consoleDataDelegate?.updateConsoleData()
             self.outputHandle.waitForDataInBackgroundAndNotify()
+            self.formatOutput()
         }
     }
     
     func run(cmd : String, args : String...) {
-        /*var env = ProcessInfo.processInfo.environment
-        var path : String = env["PATH"]! as String
-        path = path + ":" + environment
-        env["PATH"] = path
-        task.environment = env*/
         task.launchPath = cmd
         task.arguments = args
         task.launch()
+    }
+    
+    func formatOutput() {
+        if (output == "") { return }
+        
+        output = yeetBackspaces(string: output)
+        output = yeetLines(string: output)
+        
+        formattedOutput += output
+        output = ""
+    }
+    
+    func yeetBackspaces(string : String) -> String {
+        var newString = string
+        let target : Character = "\u{8}"
+        if (!string.contains(target)) { return string }
+        
+        if (string.first == target) {
+            formattedOutput = String(formattedOutput.dropLast())
+            return String(string.dropFirst())
+        }
+        
+        guard let index = string.firstIndex(of: target) else { return string }
+        let prevIndex = string.index(before: index)
+        
+        newString.remove(at: index)
+        newString.remove(at: prevIndex)
+        
+        return yeetBackspaces(string: newString)
+    }
+    
+    func yeetLines(string : String) -> String {
+        var newString = string
+        let target : Character = "\r"
+        if (!string.contains(target)) { return string }
+        
+        while true {
+            if (newString.first == target) {
+                if (formattedOutput.contains("\n")) {
+                    if formattedOutput.last != "\n" {
+                        formattedOutput = String(formattedOutput.dropLast())
+                        continue
+                    }
+                    else { break }
+                }
+                else {
+                    formattedOutput = ""
+                    break
+                }
+            }
+            
+            guard let index = newString.firstIndex(of: target) else { return newString }
+            
+            if (newString[newString.index(before: index)] == "\n") {
+                break
+            }
+            newString.remove(at: newString.index(before: index))
+        }
+        
+        guard let index = newString.firstIndex(of: target) else { return newString }
+        
+        newString.remove(at: index)
+        return yeetLines(string: newString)
+    }
+    
+
+    func runWithUserConfig(cmd : String) {
+        task.currentDirectoryPath = "/"
+        run(cmd: "/usr/bin/env", args: "bash", "-i", "-l", "-c", cmd)
     }
     
     func kill() {

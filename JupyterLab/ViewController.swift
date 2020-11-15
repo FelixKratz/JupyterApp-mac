@@ -12,14 +12,33 @@ import WebKit
 var baseURL : String = "http://127.0.0.1"
 var basePort : Int = 8887
 
-class ViewController: NSViewController, WKUIDelegate {
-    var populated : Bool = false
+protocol ConsoleDelegate : class  {
+    func getConsoleController() -> ConsoleController
+    func consoleWillDisappear() -> Void
+    func getTruncatedPath(count : Int) -> String
+    func getViewController() -> ViewController
+}
+
+class ViewController: NSViewController, WKUIDelegate, ConsoleDelegate {
     @IBOutlet weak var webView: WKWebView!
     var timer : Timer = Timer()
-    var outputTimer : Timer = Timer()
     var websiteController : WebsiteController = WebsiteController()
-    var consoleController : ConsoleController = ConsoleController()
+    var consoleController : ConsoleController?
     var directory : String = ""
+    
+    weak var consoleDataDelegate : ConsoleDataDelegate?
+    
+    func getViewController() -> ViewController {
+        return self
+    }
+    
+    func getConsoleController() -> ConsoleController {
+        return consoleController!
+    }
+    
+    func consoleWillDisappear() {
+        consoleDataDelegate = nil
+    }
     
     func setupView() -> Void {
         view.setFrameSize(NSSize(width: 1024, height: 1024))
@@ -28,11 +47,8 @@ class ViewController: NSViewController, WKUIDelegate {
     
     func populateWebView(url : String) -> Void {
         DispatchQueue.main.async {
-            if (!self.populated) {
-                self.webView.load(URLRequest(url: URL(string:url)!))
-                self.populated = true
-                self.timer.invalidate()
-            }
+            self.webView.load(URLRequest(url: URL(string:url)!))
+            self.timer.invalidate()
         }
     }
     
@@ -40,13 +56,8 @@ class ViewController: NSViewController, WKUIDelegate {
         websiteController.pingHost()
     }
     
-    func timerTickOutput(timer : Timer) -> Void {
-        print(consoleController.output)
-    }
-    
     func setupTimer() -> Void {
         timer = Timer.scheduledTimer(withTimeInterval: TimeInterval(1), repeats: true, block: timerTick(timer:))
-        outputTimer = Timer.scheduledTimer(withTimeInterval: TimeInterval(5), repeats: true, block: timerTickOutput(timer:))
         timer.fire()
     }
     
@@ -66,40 +77,66 @@ class ViewController: NSViewController, WKUIDelegate {
 
         if (dialog.runModal() ==  NSApplication.ModalResponse.OK) {
             if let result = dialog.url {
-                return result.path
+                return result.path.replacingOccurrences(of: " ", with: "\\ ")
             }
         }
         return ""
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    func startJupyterServer() {
+        consoleController = ConsoleController(_viewController: self)
         basePort += 1
         let auth_token : String = randomString(length: 30)
         websiteController = WebsiteController(_viewController: self, _baseURL: baseURL, _port: basePort, _token: auth_token)
-        self.setupView()
-        self.setupTimer()
         
-        directory = displayFolderPicker()
+        //consoleController?.runWithUserConfig(cmd: "python /Users/felix/test.py")
         
-        consoleController.run(cmd: "/Users/felix/anaconda3/bin/jupyter", args: "lab", "--port=" + String(basePort), "--port-retries=0", "--NotebookApp.token=" + auth_token, "--NotebookApp.open_browser=false", "--NotebookApp.notebook_dir=" + directory)
-        
+        consoleController?.runWithUserConfig(cmd: "jupyter lab --port=" + String(basePort) + " --port-retries=0 --NotebookApp.token=" + auth_token + " --NotebookApp.open_browser=false --NotebookApp.notebook_dir=" + directory)
+        setupTimer()
+        //consoleController.run(cmd: "/Users/felix/anaconda3/bin/jupyter", args: "lab", "--port=" + String(basePort), "--port-retries=0", "--NotebookApp.token=" + auth_token, "--NotebookApp.open_browser=false", "--NotebookApp.notebook_dir=" + directory)
     }
     
-    override func viewDidAppear() {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        directory = displayFolderPicker()
+        if (directory == "") { return }
+        setupView()
+        startJupyterServer()
+    }
+    
+    override func viewWillAppear() {
+        super.viewWillAppear()
+        if (directory == "") { print("Tach"); self.view.window?.close(); return }
+    }
+    
+    func changeTitle() {
+        let truncatedPath : String = getTruncatedPath()
+        self.view.window?.title = "JupyterLab - " + truncatedPath
+    }
+    
+    func getTruncatedPath(count : Int = 3) -> String {
         var substr : [Substring] = directory.split(separator: "/").reversed()
         var dropped : Bool = false
-        while substr.count > 3 {
+        while substr.count > count {
             substr = substr.dropLast()
             dropped = true
         }
         substr = substr.reversed()
-        self.view.window?.title = "JupyterLab - " + (dropped ? ".../" : "/") + substr.joined(separator: "/")
+        return ((dropped ? ".../" : "/") + (substr.joined(separator: "/")))
+    }
+    
+    override func viewDidAppear() {
+        super.viewDidAppear()
+        changeTitle()
     }
     
     override func viewWillDisappear() {
         super.viewWillDisappear()
-        consoleController.kill()
+        consoleController?.kill()
+    }
+    
+    func showConsole() {
+        
     }
 }
 

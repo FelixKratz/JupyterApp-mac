@@ -339,6 +339,31 @@
                                     </items>
                                 </menu>
                             </menuItem>
+                            <menuItem title="Server" id="qvD-n5-wbg">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Server" id="r4k-Jp-6P2">
+                                    <items>
+                                        <menuItem title="Show Console" id="cm5-Ru-lj9">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="showConsoleClicked:" target="Voe-Tx-rLC" id="PDV-Ha-2t3"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Restart" id="KKN-gw-oGs">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="restartClicked:" target="Voe-Tx-rLC" id="5AA-CX-ztP"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Terminate" id="2y1-yr-H8Q">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="terminateClicked:" target="Voe-Tx-rLC" id="Tta-HX-7T5"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
                             <menuItem title="Format" id="jxT-CU-nIS">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Format" id="GEO-Iw-cKr">
@@ -703,25 +728,94 @@
             </objects>
             <point key="canvasLocation" x="75" y="250"/>
         </scene>
+        <!--Window Controller-->
+        <scene sceneID="LxE-T9-gj2">
+            <objects>
+                <windowController storyboardIdentifier="console" id="8xL-1j-Cb1" sceneMemberID="viewController">
+                    <window key="window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="preferred" titleVisibility="hidden" id="Kc1-T6-O3Z">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="425" y="461" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
+                    </window>
+                    <connections>
+                        <segue destination="LkF-2m-ATR" kind="relationship" relationship="window.shadowedContentViewController" id="XP3-vj-JSC"/>
+                    </connections>
+                </windowController>
+                <customObject id="AJv-RT-oBG" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="751" y="250"/>
+        </scene>
+        <!--Console-->
+        <scene sceneID="nRL-zs-wgU">
+            <objects>
+                <viewController title="Console" id="LkF-2m-ATR" customClass="ConsoleViewController" customModule="JupyterLab" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="8z1-eu-65o">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ixh-lB-ghc">
+                                <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                                <clipView key="contentView" copiesOnScroll="NO" id="dFF-3m-2cN">
+                                    <rect key="frame" x="0.0" y="0.0" width="435" height="300"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textView editable="NO" importsGraphics="NO" verticallyResizable="YES" findStyle="bar" allowsCharacterPickerTouchBarItem="NO" allowsDocumentBackgroundColorChange="YES" textCompletion="NO" smartInsertDelete="YES" id="SJf-0y-dmb">
+                                            <rect key="frame" x="0.0" y="0.0" width="435" height="300"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <color key="textColor" name="systemGreenColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <size key="minSize" width="435" height="300"/>
+                                            <size key="maxSize" width="442" height="10000000"/>
+                                            <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                        </textView>
+                                    </subviews>
+                                </clipView>
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="XEc-Jb-S7Y">
+                                    <rect key="frame" x="-100" y="-100" width="225" height="15"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="VlM-Zm-J1K">
+                                    <rect key="frame" x="435" y="0.0" width="15" height="300"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="Ixh-lB-ghc" firstAttribute="leading" secondItem="8z1-eu-65o" secondAttribute="leading" id="EjD-37-Wg2"/>
+                            <constraint firstAttribute="bottom" secondItem="Ixh-lB-ghc" secondAttribute="bottom" id="fPm-tH-OZ6"/>
+                            <constraint firstItem="Ixh-lB-ghc" firstAttribute="top" secondItem="8z1-eu-65o" secondAttribute="top" id="gR8-Op-ndM"/>
+                            <constraint firstAttribute="trailing" secondItem="Ixh-lB-ghc" secondAttribute="trailing" id="xsX-Kl-yVB"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="scrollView" destination="Ixh-lB-ghc" id="zLY-mQ-nWN"/>
+                        <outlet property="textView" destination="SJf-0y-dmb" id="S1u-1Z-2LV"/>
+                    </connections>
+                </viewController>
+                <customObject id="fFA-Fr-Qnk" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="751" y="752"/>
+        </scene>
         <!--JupyterLab-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
                 <viewController title="JupyterLab" id="XfG-lQ-9wD" customClass="ViewController" customModule="JupyterLab" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="720"/>
+                        <rect key="frame" x="0.0" y="0.0" width="456" height="324"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tabView type="noTabsNoBorder" initialItem="cOc-PG-FNu" translatesAutoresizingMaskIntoConstraints="NO" id="g3u-CL-hOf">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="720"/>
+                                <rect key="frame" x="0.0" y="0.0" width="456" height="324"/>
                                 <font key="font" metaFont="system"/>
                                 <tabViewItems>
                                     <tabViewItem label="Tab" identifier="" id="cOc-PG-FNu" userLabel="Default">
                                         <view key="view" id="14v-Sb-yne">
-                                            <rect key="frame" x="0.0" y="0.0" width="1024" height="720"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="456" height="324"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <wkWebView wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mWO-sk-IFU">
-                                                    <rect key="frame" x="0.0" y="0.0" width="1024" height="720"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="456" height="324"/>
                                                     <wkWebViewConfiguration key="configuration">
                                                         <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" audio="YES" video="YES"/>
                                                         <wkPreferences key="preferences"/>
@@ -752,7 +846,7 @@
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="74" y="1026"/>
+            <point key="canvasLocation" x="74" y="752"/>
         </scene>
     </scenes>
 </document>

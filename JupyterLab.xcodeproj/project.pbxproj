@@ -17,6 +17,7 @@
 		DC42DB0D25599083007D20CB /* JupyterLabUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC42DB0C25599083007D20CB /* JupyterLabUITests.swift */; };
 		DC9CF85D255F01E100946AD4 /* WebsiteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9CF85C255F01E100946AD4 /* WebsiteController.swift */; };
 		DC9DF6EA2559A09F00C3A7BB /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC9DF6E92559A09F00C3A7BB /* WebKit.framework */; };
+		DCDD0A4E2560448000A483A7 /* ConsoleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDD0A4D2560448000A483A7 /* ConsoleViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		DC42DB0E25599083007D20CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DC9CF85C255F01E100946AD4 /* WebsiteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebsiteController.swift; sourceTree = "<group>"; };
 		DC9DF6E92559A09F00C3A7BB /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		DCDD0A4D2560448000A483A7 /* ConsoleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsoleViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 				DC9CF85C255F01E100946AD4 /* WebsiteController.swift */,
 				DC07E9D6255F1F4B0033B0C9 /* ConsoleController.swift */,
 				DC07E9D8255F387D0033B0C9 /* WindowController.swift */,
+				DCDD0A4D2560448000A483A7 /* ConsoleViewController.swift */,
 			);
 			path = JupyterLab;
 			sourceTree = "<group>";
@@ -275,6 +278,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCDD0A4E2560448000A483A7 /* ConsoleViewController.swift in Sources */,
 				DC9CF85D255F01E100946AD4 /* WebsiteController.swift in Sources */,
 				DC07E9D9255F387D0033B0C9 /* WindowController.swift in Sources */,
 				DC07E9D7255F1F4B0033B0C9 /* ConsoleController.swift in Sources */,
