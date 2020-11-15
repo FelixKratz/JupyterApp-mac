@@ -69,9 +69,9 @@ class ViewController: NSViewController, WKUIDelegate, ConsoleDelegate {
     func displayFolderPicker() -> String {
         let dialog = NSOpenPanel();
 
-        dialog.title                   = "Choose jupyter directory";
-        dialog.showsResizeIndicator    = true;
-        dialog.showsHiddenFiles        = false;
+        dialog.title = "Choose jupyter directory";
+        dialog.showsResizeIndicator = true;
+        dialog.showsHiddenFiles = false;
         dialog.canChooseFiles = false;
         dialog.canChooseDirectories = true;
 
@@ -89,24 +89,16 @@ class ViewController: NSViewController, WKUIDelegate, ConsoleDelegate {
         let auth_token : String = randomString(length: 30)
         websiteController = WebsiteController(_viewController: self, _baseURL: baseURL, _port: basePort, _token: auth_token)
         
-        //consoleController?.runWithUserConfig(cmd: "python /Users/felix/test.py")
-        
         consoleController?.runWithUserConfig(cmd: "jupyter lab --port=" + String(basePort) + " --port-retries=0 --NotebookApp.token=" + auth_token + " --NotebookApp.open_browser=false --NotebookApp.notebook_dir=" + directory)
         setupTimer()
-        //consoleController.run(cmd: "/Users/felix/anaconda3/bin/jupyter", args: "lab", "--port=" + String(basePort), "--port-retries=0", "--NotebookApp.token=" + auth_token, "--NotebookApp.open_browser=false", "--NotebookApp.notebook_dir=" + directory)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         directory = displayFolderPicker()
-        if (directory == "") { return }
+        if (directory == "") { directory = "~" }
         setupView()
         startJupyterServer()
-    }
-    
-    override func viewWillAppear() {
-        super.viewWillAppear()
-        if (directory == "") { print("Tach"); self.view.window?.close(); return }
     }
     
     func changeTitle() {
@@ -133,10 +125,6 @@ class ViewController: NSViewController, WKUIDelegate, ConsoleDelegate {
     override func viewWillDisappear() {
         super.viewWillDisappear()
         consoleController?.kill()
-    }
-    
-    func showConsole() {
-        
     }
 }
 
