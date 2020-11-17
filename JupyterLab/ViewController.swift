@@ -9,8 +9,8 @@
 import Cocoa
 import WebKit
 
-var baseURL : String = "http://127.0.0.1"
-var basePort : Int = 8887
+var baseURL : String = "http://127.0.0.1"//Preferences.shared.serverIP
+var basePort : Int = 8887//Preferences.shared.serverPort - 1
 
 protocol ConsoleDelegate : class  {
     func getConsoleController() -> ConsoleController
@@ -61,11 +61,6 @@ class ViewController: NSViewController, WKUIDelegate, ConsoleDelegate {
         timer.fire()
     }
     
-    func randomString(length: Int) -> String {
-      let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-      return String((0..<length).map{ _ in letters.randomElement()! })
-    }
-    
     func displayFolderPicker() -> String {
         let dialog = NSOpenPanel();
 
@@ -88,8 +83,9 @@ class ViewController: NSViewController, WKUIDelegate, ConsoleDelegate {
         basePort += 1
         let auth_token : String = randomString(length: 30)
         websiteController = WebsiteController(_viewController: self, _baseURL: baseURL, _port: basePort, _token: auth_token)
-        
-        consoleController?.runWithUserConfig(cmd: "jupyter lab --port=" + String(basePort) + " --port-retries=0 --NotebookApp.token=" + auth_token + " --NotebookApp.open_browser=false --NotebookApp.notebook_dir=" + directory)
+        //consoleController?.run(cmd: "/Users/felix/anaconda3/bin/jupyter", args: "lab", "--port=" + String(basePort), "--port-retries=0", "--NotebookApp.token=" + auth_token, "--NotebookApp.open_browser=false", "--NotebookApp.notebook_dir=" + directory)
+        consoleController?.runWithUserConfig(cmd: "jupyter lab --port=" + String(basePort) + " --port-retries=0 --NotebookApp.token="
+                                                  + auth_token + " --NotebookApp.open_browser=false --NotebookApp.notebook_dir=" + directory)
         setupTimer()
     }
     

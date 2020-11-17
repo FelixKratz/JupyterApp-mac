@@ -11,8 +11,30 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
+    @IBAction func newTerminalAtFolderClicked(_ sender: Any) {
+        guard let currentViewController = NSApplication.shared.mainWindow?.contentViewController as? ViewController else {
+            return
+        }
+        let console = ConsoleController(_viewController: nil)
+        print("New Console with command: ", "open -a Terminal" + "\"" + currentViewController.directory + "\"")
+        console.runWithUserConfig(cmd: "open -a Terminal " + "\"" + currentViewController.directory + "\"")
+    }
+    
+    @IBAction func openFolderInFinderClicked(_ sender: Any) {
+        guard let currentViewController = NSApplication.shared.mainWindow?.contentViewController as? ViewController else {
+            return
+        }
+        
+        let console : ConsoleController = ConsoleController(_viewController: nil)
+        console.runWithUserConfig(cmd: "open " + currentViewController.directory)
+    }
+    
     @IBAction func showConsoleClicked(_ sender: Any) {
         guard let currentViewController = NSApplication.shared.mainWindow?.contentViewController as? ViewController else {
+            guard let currentViewController = NSApplication.shared.mainWindow?.contentViewController as? ConsoleViewController else {
+                return
+            }
+            currentViewController.view.window?.close()
             return
         }
         

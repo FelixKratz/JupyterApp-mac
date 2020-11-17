@@ -9,6 +9,7 @@
 import Foundation
 
 class ConsoleController {
+    
     private let task : Process
     private let outPipe : Pipe
     private let inPipe : Pipe
@@ -21,12 +22,12 @@ class ConsoleController {
     var dataObserver: NSObjectProtocol!
     let notificationCenter = NotificationCenter.default
     let dataNotificationName = NSNotification.Name.NSFileHandleDataAvailable
-    let viewController : ViewController
+    let viewController : ViewController?
     var output : String = ""
     var formattedOutput : String = ""
 
     
-    init(_viewController : ViewController) {
+    init(_viewController : ViewController?) {
         viewController = _viewController
         task = Process()
         outPipe = Pipe()
@@ -52,7 +53,9 @@ class ConsoleController {
             if let line = String(data: data, encoding: .utf8) {
                 self.output += line
             }
-            self.viewController.consoleDataDelegate?.updateConsoleData()
+            if (self.viewController != nil) {
+                self.viewController?.consoleDataDelegate?.updateConsoleData()
+            }
             self.outputHandle.waitForDataInBackgroundAndNotify()
             self.formatOutput()
         }
