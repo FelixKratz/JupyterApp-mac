@@ -15,6 +15,10 @@
 		DC42DAF625599082007D20CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC42DAF425599082007D20CB /* Main.storyboard */; };
 		DC42DB0225599083007D20CB /* JupyterLabTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC42DB0125599083007D20CB /* JupyterLabTests.swift */; };
 		DC42DB0D25599083007D20CB /* JupyterLabUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC42DB0C25599083007D20CB /* JupyterLabUITests.swift */; };
+		DC6977952565698600DF0C21 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC6977942565698600DF0C21 /* Media.xcassets */; };
+		DC6977972565698600DF0C21 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = DC6977962565698600DF0C21 /* icon.icns */; };
+		DC6977992565698600DF0C21 /* ActivationRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6977982565698600DF0C21 /* ActivationRequestHandler.swift */; };
+		DC6977A12565698600DF0C21 /* FinderExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = DC6977922565698600DF0C21 /* FinderExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		DC9CF85D255F01E100946AD4 /* WebsiteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9CF85C255F01E100946AD4 /* WebsiteController.swift */; };
 		DC9DF6EA2559A09F00C3A7BB /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC9DF6E92559A09F00C3A7BB /* WebKit.framework */; };
 		DCA8529925630E80003B9CCE /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA8529825630E80003B9CCE /* Preferences.swift */; };
@@ -37,7 +41,28 @@
 			remoteGlobalIDString = DC42DAEA25599080007D20CB;
 			remoteInfo = JupyterLab;
 		};
+		DC69779F2565698600DF0C21 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DC42DAE325599080007D20CB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DC6977912565698600DF0C21;
+			remoteInfo = FinderExtension;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		DC6977A52565698600DF0C21 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				DC6977A12565698600DF0C21 /* FinderExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		DC07E9D6255F1F4B0033B0C9 /* ConsoleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsoleController.swift; sourceTree = "<group>"; };
@@ -55,6 +80,12 @@
 		DC42DB0825599083007D20CB /* JupyterLabUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JupyterLabUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC42DB0C25599083007D20CB /* JupyterLabUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JupyterLabUITests.swift; sourceTree = "<group>"; };
 		DC42DB0E25599083007D20CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DC6977922565698600DF0C21 /* FinderExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = FinderExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC6977942565698600DF0C21 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		DC6977962565698600DF0C21 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
+		DC6977982565698600DF0C21 /* ActivationRequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivationRequestHandler.swift; sourceTree = "<group>"; };
+		DC69779D2565698600DF0C21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DC69779E2565698600DF0C21 /* FinderExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FinderExtension.entitlements; sourceTree = "<group>"; };
 		DC9CF85C255F01E100946AD4 /* WebsiteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebsiteController.swift; sourceTree = "<group>"; };
 		DC9DF6E92559A09F00C3A7BB /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		DCA8529825630E80003B9CCE /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
@@ -85,12 +116,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DC69778F2565698600DF0C21 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		DC42DAE225599080007D20CB = {
 			isa = PBXGroup;
 			children = (
+				DC6977932565698600DF0C21 /* FinderExtension */,
 				DC42DAED25599080007D20CB /* JupyterLab */,
 				DC42DB0025599083007D20CB /* JupyterLabTests */,
 				DC42DB0B25599083007D20CB /* JupyterLabUITests */,
@@ -105,6 +144,7 @@
 				DC42DAEB25599080007D20CB /* JupyterLab.app */,
 				DC42DAFD25599083007D20CB /* JupyterLabTests.xctest */,
 				DC42DB0825599083007D20CB /* JupyterLabUITests.xctest */,
+				DC6977922565698600DF0C21 /* FinderExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -142,6 +182,18 @@
 			path = JupyterLabUITests;
 			sourceTree = "<group>";
 		};
+		DC6977932565698600DF0C21 /* FinderExtension */ = {
+			isa = PBXGroup;
+			children = (
+				DC6977942565698600DF0C21 /* Media.xcassets */,
+				DC6977962565698600DF0C21 /* icon.icns */,
+				DC6977982565698600DF0C21 /* ActivationRequestHandler.swift */,
+				DC69779D2565698600DF0C21 /* Info.plist */,
+				DC69779E2565698600DF0C21 /* FinderExtension.entitlements */,
+			);
+			path = FinderExtension;
+			sourceTree = "<group>";
+		};
 		DC9DF6E82559A09F00C3A7BB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -172,10 +224,12 @@
 				DC42DAE725599080007D20CB /* Sources */,
 				DC42DAE825599080007D20CB /* Frameworks */,
 				DC42DAE925599080007D20CB /* Resources */,
+				DC6977A52565698600DF0C21 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				DC6977A02565698600DF0C21 /* PBXTargetDependency */,
 			);
 			name = JupyterLab;
 			productName = JupyterLab;
@@ -218,6 +272,23 @@
 			productReference = DC42DB0825599083007D20CB /* JupyterLabUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		DC6977912565698600DF0C21 /* FinderExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DC6977A22565698600DF0C21 /* Build configuration list for PBXNativeTarget "FinderExtension" */;
+			buildPhases = (
+				DC69778E2565698600DF0C21 /* Sources */,
+				DC69778F2565698600DF0C21 /* Frameworks */,
+				DC6977902565698600DF0C21 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FinderExtension;
+			productName = FinderExtension;
+			productReference = DC6977922565698600DF0C21 /* FinderExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -239,6 +310,9 @@
 						CreatedOnToolsVersion = 11.0;
 						TestTargetID = DC42DAEA25599080007D20CB;
 					};
+					DC6977912565698600DF0C21 = {
+						CreatedOnToolsVersion = 11.0;
+					};
 				};
 			};
 			buildConfigurationList = DC42DAE625599080007D20CB /* Build configuration list for PBXProject "JupyterLab" */;
@@ -257,6 +331,7 @@
 				DC42DAEA25599080007D20CB /* JupyterLab */,
 				DC42DAFC25599083007D20CB /* JupyterLabTests */,
 				DC42DB0725599083007D20CB /* JupyterLabUITests */,
+				DC6977912565698600DF0C21 /* FinderExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -282,6 +357,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC6977902565698600DF0C21 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC6977952565698600DF0C21 /* Media.xcassets in Resources */,
+				DC6977972565698600DF0C21 /* icon.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,6 +403,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DC69778E2565698600DF0C21 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC6977992565698600DF0C21 /* ActivationRequestHandler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -331,6 +423,11 @@
 			isa = PBXTargetDependency;
 			target = DC42DAEA25599080007D20CB /* JupyterLab */;
 			targetProxy = DC42DB0925599083007D20CB /* PBXContainerItemProxy */;
+		};
+		DC6977A02565698600DF0C21 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DC6977912565698600DF0C21 /* FinderExtension */;
+			targetProxy = DC69779F2565698600DF0C21 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -462,6 +559,7 @@
 		DC42DB1225599083007D20CB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = JupyterLab/JupyterLab.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -482,6 +580,7 @@
 		DC42DB1325599083007D20CB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = JupyterLab/JupyterLab.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -583,6 +682,48 @@
 			};
 			name = Release;
 		};
+		DC6977A32565698600DF0C21 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = FinderExtension/FinderExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = DQ6R9YE8BF;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = FinderExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = fk.JupyterLab.FinderExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		DC6977A42565698600DF0C21 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = FinderExtension/FinderExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = DQ6R9YE8BF;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = FinderExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = fk.JupyterLab.FinderExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -618,6 +759,15 @@
 			buildConfigurations = (
 				DC42DB1825599083007D20CB /* Debug */,
 				DC42DB1925599083007D20CB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DC6977A22565698600DF0C21 /* Build configuration list for PBXNativeTarget "FinderExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC6977A32565698600DF0C21 /* Debug */,
+				DC6977A42565698600DF0C21 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

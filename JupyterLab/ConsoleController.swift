@@ -8,6 +8,39 @@
 
 import Foundation
 
+func runSynchronousShellWithUserConfig(cmd: String) -> String? {
+    let task = Process()
+
+    let pipe = Pipe()
+    task.standardOutput = pipe
+    task.currentDirectoryPath = "/"
+    task.launchPath = "/usr/bin/env"
+    task.arguments = ["bash", "-i", "-l", "-c", cmd]
+    task.launch()
+    task.waitUntilExit()
+    let data = pipe.fileHandleForReading.readDataToEndOfFile()
+    let output = String(data: data, encoding: String.Encoding.utf8)
+
+    return output
+}
+
+func runSynchronousShell(launchPath: String, args : String...) -> String? {
+    let task = Process()
+
+    let pipe = Pipe()
+    task.standardOutput = pipe
+    task.currentDirectoryPath = "/"
+    task.launchPath = launchPath
+    task.arguments = args
+    task.launch()
+    task.waitUntilExit()
+    let data = pipe.fileHandleForReading.readDataToEndOfFile()
+    let output = String(data: data, encoding: String.Encoding.utf8)
+
+    return output
+}
+
+
 class ConsoleController {
     
     private let task : Process
@@ -25,10 +58,10 @@ class ConsoleController {
     let viewController : ViewController?
     var output : String = ""
     var formattedOutput : String = ""
-
     
     init(_viewController : ViewController?) {
         viewController = _viewController
+        
         task = Process()
         outPipe = Pipe()
         outputHandle = outPipe.fileHandleForReading
@@ -130,7 +163,6 @@ class ConsoleController {
         return yeetLines(string: newString)
     }
     
-
     func runWithUserConfig(cmd : String) {
         task.currentDirectoryPath = "/"
         run(cmd: "/usr/bin/env", args: "bash", "-i", "-l", "-c", cmd)

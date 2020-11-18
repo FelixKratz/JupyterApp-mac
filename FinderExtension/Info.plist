@@ -4,29 +4,12 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
-	<key>CFBundleDocumentTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>ipynb</string>
-			</array>
-			<key>CFBundleTypeName</key>
-			<string>Notebook</string>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>LSItemContentTypes</key>
-			<array>
-				<string>notebook</string>
-			</array>
-			<key>NSDocumentClass</key>
-			<string>NSDocument</string>
-		</dict>
-	</array>
+	<key>CFBundleDisplayName</key>
+	<string>FinderExtension</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIconFile</key>
-	<string></string>
+	<string>icon</string>
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -41,15 +24,31 @@
 	<string>1</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
+	<key>NSExtension</key>
+	<dict>
+		<key>NSExtensionAttributes</key>
+		<dict>
+			<key>NSExtensionActivationRule</key>
+			<string>TRUEPREDICATE</string>
+			<key>NSExtensionServiceAllowsFinderPreviewItem</key>
+			<true/>
+			<key>NSExtensionServiceAllowsTouchBarItem</key>
+			<true/>
+			<key>NSExtensionServiceFinderPreviewIconName</key>
+			<string>NSActionTemplate</string>
+			<key>NSExtensionServiceRoleType</key>
+			<string>NSExtensionServiceRoleTypeEditor</string>
+			<key>NSExtensionServiceTouchBarBezelColorName</key>
+			<string>TouchBarBezel</string>
+			<key>NSExtensionServiceTouchBarIconName</key>
+			<string>NSActionTemplate</string>
+		</dict>
+		<key>NSExtensionPointIdentifier</key>
+		<string>com.apple.ui-services</string>
+		<key>NSExtensionPrincipalClass</key>
+		<string>$(PRODUCT_MODULE_NAME).ActionViewController</string>
+	</dict>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2020 fk. All rights reserved.</string>
-	<key>NSMainStoryboardFile</key>
-	<string>Main</string>
-	<key>NSPrincipalClass</key>
-	<string>NSApplication</string>
-	<key>NSSupportsAutomaticTermination</key>
-	<true/>
-	<key>NSSupportsSuddenTermination</key>
-	<true/>
 </dict>
 </plist>

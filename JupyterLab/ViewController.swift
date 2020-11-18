@@ -25,6 +25,7 @@ class ViewController: NSViewController, WKUIDelegate, ConsoleDelegate {
     var websiteController : WebsiteController = WebsiteController()
     var consoleController : ConsoleController?
     var directory : String = ""
+    var file : String = ""
     
     weak var consoleDataDelegate : ConsoleDataDelegate?
     
@@ -67,11 +68,15 @@ class ViewController: NSViewController, WKUIDelegate, ConsoleDelegate {
         dialog.title = "Choose jupyter directory";
         dialog.showsResizeIndicator = true;
         dialog.showsHiddenFiles = false;
-        dialog.canChooseFiles = false;
+        dialog.canChooseFiles = true;
         dialog.canChooseDirectories = true;
 
         if (dialog.runModal() ==  NSApplication.ModalResponse.OK) {
             if let result = dialog.url {
+                //if (result.isFileURL) {
+                //    file = result.lastPathComponent
+                //   return result.deletingLastPathComponent().path.replacingOccurrences(of: " ", with: "\\ ")
+                //}
                 return result.path.replacingOccurrences(of: " ", with: "\\ ")
             }
         }
@@ -84,7 +89,13 @@ class ViewController: NSViewController, WKUIDelegate, ConsoleDelegate {
         let auth_token : String = randomString(length: 30)
         websiteController = WebsiteController(_viewController: self, _baseURL: baseURL, _port: basePort, _token: auth_token)
         //consoleController?.run(cmd: "/Users/felix/anaconda3/bin/jupyter", args: "lab", "--port=" + String(basePort), "--port-retries=0", "--NotebookApp.token=" + auth_token, "--NotebookApp.open_browser=false", "--NotebookApp.notebook_dir=" + directory)
-        consoleController?.runWithUserConfig(cmd: "jupyter lab --port=" + String(basePort) + " --port-retries=0 --NotebookApp.token="
+        
+        var app : String = "lab"
+        //if (file != "") {
+        //    app = "notebook"
+        //}
+        
+        consoleController?.runWithUserConfig(cmd: "jupyter " + app + " --port=" + String(basePort) + " --port-retries=0 --NotebookApp.token="
                                                   + auth_token + " --NotebookApp.open_browser=false --NotebookApp.notebook_dir=" + directory)
         setupTimer()
     }

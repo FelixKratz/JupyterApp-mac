@@ -15,18 +15,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         guard let currentViewController = NSApplication.shared.mainWindow?.contentViewController as? ViewController else {
             return
         }
-        let console = ConsoleController(_viewController: nil)
-        print("New Console with command: ", "open -a Terminal" + "\"" + currentViewController.directory + "\"")
-        console.runWithUserConfig(cmd: "open -a Terminal " + "\"" + currentViewController.directory + "\"")
+        //let out : String = runSynchronousShellWithUserConfig(cmd: "open -a Terminal " + currentViewController.directory) ?? ""
+        _ = runSynchronousShell(launchPath: "/usr/bin/open", args: "-a", "Terminal", currentViewController.directory.replacingOccurrences(of: "\\ ", with: " ")) ?? ""
     }
     
     @IBAction func openFolderInFinderClicked(_ sender: Any) {
         guard let currentViewController = NSApplication.shared.mainWindow?.contentViewController as? ViewController else {
             return
         }
-        
-        let console : ConsoleController = ConsoleController(_viewController: nil)
-        console.runWithUserConfig(cmd: "open " + currentViewController.directory)
+        //let out : String = runSynchronousShellWithUserConfig(cmd: "open " + currentViewController.directory) ?? ""
+        _ = runSynchronousShell(launchPath: "/usr/bin/open", args: currentViewController.directory.replacingOccurrences(of: "\\ ", with: " ")) ?? ""
     }
     
     @IBAction func showConsoleClicked(_ sender: Any) {
