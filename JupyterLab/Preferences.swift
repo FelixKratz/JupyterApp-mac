@@ -17,31 +17,40 @@ class Preferences {
     
     static let shared = Preferences()
 
-    var defaultServerIP : String = "http://127.0.0.1"
-    var defaultServerPort : Int = 8888
+    struct defaults {
+        static let disableJupyterServer : Bool = false
+        static let serverIP : String = "http://127.0.0.1"
+        static let serverPort : Int = 8888
+    }
+    
+    private let settingsFile : UserDefaults = UserDefaults.standard
     
     var serverIP : String = ""
     var serverPort : Int = 0
     var customToken : String = ""
+    var disableJupyterServer : Bool = false
+    
+    var folderPathForContextAction : String = ""
+    var fileNameForContextAction : String = ""
     
     init() {
         loadPreferences()
     }
     
     func savePreferences() -> Void {
-        let defaults = UserDefaults.standard
-        defaults.set(serverIP, forKey: "serverIP")
-        defaults.set(serverPort, forKey: "serverPort")
-        defaults.set(customToken, forKey: "customToken")
+        settingsFile.set(serverIP, forKey: "serverIP")
+        settingsFile.set(serverPort, forKey: "serverPort")
+        settingsFile.set(customToken, forKey: "customToken")
+        settingsFile.set(disableJupyterServer, forKey: "disableJupyterServer")
         
         baseURL = serverIP
         basePort = serverPort - 1
     }
     
     func loadPreferences() -> Void {
-        let defaults = UserDefaults.standard
-        serverIP = defaults.string(forKey: "serverIP") ?? defaultServerIP
-        serverPort = (defaults.integer(forKey: "serverPort") == 0) ? defaultServerPort : defaults.integer(forKey: "serverPort")
-        customToken = defaults.string(forKey: "customToken") ?? customToken
+        serverIP = settingsFile.string(forKey: "serverIP") ?? Preferences.defaults.serverIP
+        serverPort = (settingsFile.integer(forKey: "serverPort") == 0) ? Preferences.defaults.serverPort : settingsFile.integer(forKey: "serverPort")
+        customToken = settingsFile.string(forKey: "customToken") ?? customToken
+        disableJupyterServer = settingsFile.bool(forKey: "disableJupyterServer")
     }
 }

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		DC07E9D7255F1F4B0033B0C9 /* ConsoleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC07E9D6255F1F4B0033B0C9 /* ConsoleController.swift */; };
 		DC07E9D9255F387D0033B0C9 /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC07E9D8255F387D0033B0C9 /* WindowController.swift */; };
+		DC2C35E32565DC11002C1118 /* DebugLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2C35E22565DC11002C1118 /* DebugLog.swift */; };
 		DC42DAEF25599080007D20CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC42DAEE25599080007D20CB /* AppDelegate.swift */; };
 		DC42DAF125599081007D20CB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC42DAF025599081007D20CB /* ViewController.swift */; };
 		DC42DAF325599082007D20CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC42DAF225599082007D20CB /* Assets.xcassets */; };
@@ -67,6 +68,7 @@
 /* Begin PBXFileReference section */
 		DC07E9D6255F1F4B0033B0C9 /* ConsoleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsoleController.swift; sourceTree = "<group>"; };
 		DC07E9D8255F387D0033B0C9 /* WindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowController.swift; sourceTree = "<group>"; };
+		DC2C35E22565DC11002C1118 /* DebugLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugLog.swift; sourceTree = "<group>"; };
 		DC42DAEB25599080007D20CB /* JupyterLab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JupyterLab.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC42DAEE25599080007D20CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DC42DAF025599081007D20CB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				DC42DAF225599082007D20CB /* Assets.xcassets */,
 				DC42DAF725599082007D20CB /* Info.plist */,
 				DC42DAF825599082007D20CB /* JupyterLab.entitlements */,
+				DC2C35E22565DC11002C1118 /* DebugLog.swift */,
 			);
 			path = JupyterLab;
 			sourceTree = "<group>";
@@ -378,6 +381,7 @@
 			files = (
 				DCDD0A4E2560448000A483A7 /* ConsoleViewController.swift in Sources */,
 				DCA8529925630E80003B9CCE /* Preferences.swift in Sources */,
+				DC2C35E32565DC11002C1118 /* DebugLog.swift in Sources */,
 				DC9CF85D255F01E100946AD4 /* WebsiteController.swift in Sources */,
 				DC07E9D9255F387D0033B0C9 /* WindowController.swift in Sources */,
 				DC07E9D7255F1F4B0033B0C9 /* ConsoleController.swift in Sources */,

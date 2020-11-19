@@ -89,8 +89,36 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         window.newWindowForTab(self)
     }
     
+    func openWindow(name : String) {
+        let storyBoard : NSStoryboard = NSStoryboard.init(name: "Main", bundle: nil)
+        let prefWindowController : NSWindowController = storyBoard.instantiateController(withIdentifier: name) as! NSWindowController
+        prefWindowController.showWindow(self)
+    }
+    
+    @objc func openFromContextWithURL(_ pboard: NSPasteboard, userData:String, error: NSErrorPointer) {
+        if let url = NSURL(from: pboard) {
+            // TODO: Implement new JupyterLab ViewController here
+            guard let path = url.path else {
+                return
+            }
+            
+            let attributes = try! FileManager.default.attributesOfItem(atPath: path)
+            let type = attributes[FileAttributeKey.type] as? FileAttributeType
+            if (!(type == FileAttributeType.typeDirectory)) {
+                Preferences.shared.fileNameForContextAction = url.lastPathComponent ?? ""
+                Preferences.shared.folderPathForContextAction = url.deletingLastPathComponent?.path ?? ""
+            }
+            else {
+                Preferences.shared.folderPathForContextAction = url.path ?? ""
+            }
+            
+       }
+    }
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
+        NSApp.servicesProvider = self
+        openWindow(name: "preferences")
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

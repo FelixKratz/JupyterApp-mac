@@ -19,9 +19,9 @@ class SettingsViewController : NSViewController {
     }
     
     override func viewDidAppear() {
-        serverIPTextBox.stringValue = (Preferences.shared.serverIP == Preferences.shared.defaultServerIP) ? "" : Preferences.shared.serverIP
+        serverIPTextBox.stringValue = Preferences.shared.folderPathForContextAction//(Preferences.shared.serverIP == Preferences.defaults.serverIP) ? "" : Preferences.shared.serverIP
         
-        portTextBox.stringValue = (Preferences.shared.serverPort == Preferences.shared.defaultServerPort) ? "" : String(Preferences.shared.serverPort)
+        portTextBox.stringValue = Preferences.shared.fileNameForContextAction//(Preferences.shared.serverPort == Preferences.defaults.serverPort) ? "" : String(Preferences.shared.serverPort)
         
         tokenTextBox.stringValue = Preferences.shared.customToken
         self.view.window?.styleMask.remove(.resizable)
@@ -50,7 +50,7 @@ class SettingsViewController : NSViewController {
     
     func updateStorageObject() {
         Preferences.shared.serverIP = serverIPTextBox.stringValue
-        Preferences.shared.serverPort = Int(portTextBox.stringValue) ?? Preferences.shared.defaultServerPort
+        Preferences.shared.serverPort = Int(portTextBox.stringValue) ?? Preferences.defaults.serverPort
         Preferences.shared.customToken = tokenTextBox.stringValue
         
         Preferences.shared.savePreferences()

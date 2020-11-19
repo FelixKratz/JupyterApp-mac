@@ -11,7 +11,6 @@ import Cocoa
 class ActionRequestHandler: NSObject, NSExtensionRequestHandling {
 
     func beginRequest(with context: NSExtensionContext) {
-        print("Moin")
         // For an Action Extension there will only ever be one extension item.
         precondition(context.inputItems.count == 1)
         guard let inputItem = context.inputItems[0] as? NSExtensionItem
