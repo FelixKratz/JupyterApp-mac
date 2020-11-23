@@ -1,10 +1,11 @@
 # JupyterApp-mac
-This repository is not affiliated with Project Jupyter.
 This app is a simple standalone application that can run jupyter servers and has some "ease-of-use" features.
-If you find bugs (which is very likely) please tell me in the [Issues](https://github.com/FelixKratz/JupyterApp-mac/issues)
+If you find bugs (which is very likely) please tell me in the [Issues](https://github.com/FelixKratz/JupyterApp-mac/issues).
 
 ## Prerequisites
-To install jupyter please follow the guide on https://jupyter.org/install
+To install jupyter please follow the guide on https://jupyter.org/install.
+For this application to work jupyter must be accessible in a default interactive login shell 
+(you can test this by opening a fresh terminal and typing: jupyter --version, you should get a list of components and versions).
 
 ## Functionalities
 Finder Integration: Use the finder to start a new jupyter server: <br>
