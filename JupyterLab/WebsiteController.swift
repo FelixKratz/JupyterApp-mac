@@ -10,10 +10,10 @@ import Foundation
 import WebKit
 
 class WebsiteController {
-    private let baseURL : String
-    private var port : Int
+    let baseURL : String
+    var port : Int
     private let viewController : ViewController?
-    private let token : String
+    let token : String
     
     init() {
         viewController = nil
@@ -31,8 +31,7 @@ class WebsiteController {
     func completionHandler(_ : Data?, response : URLResponse?, error : Error?) -> Void {
         if let httpResponse = response as? HTTPURLResponse {
             if (httpResponse.statusCode == 200) {
-                viewController?.populateWebView(url: baseURL + ":" + String(port) + "/?token=" + token)
-                port += 1
+                viewController?.populateWebView()
             }
         }
     }

@@ -19,13 +19,14 @@ protocol ConsoleDelegate : class  {
     func getViewController() -> ViewController
 }
 
-class ViewController: NSViewController, WKUIDelegate, ConsoleDelegate {
+class ViewController: NSViewController, WKUIDelegate, WKNavigationDelegate, ConsoleDelegate {
     @IBOutlet weak var webView: WKWebView!
     var timer : Timer = Timer()
     var websiteController : WebsiteController = WebsiteController()
     var consoleController : ConsoleController?
     var directory : String = ""
     var file : String = ""
+    var app : String = "lab"
     
     weak var consoleDataDelegate : ConsoleDataDelegate?
     
@@ -46,8 +47,16 @@ class ViewController: NSViewController, WKUIDelegate, ConsoleDelegate {
         self.view.window?.tabbingMode = .preferred
     }
     
-    func populateWebView(url : String) -> Void {
+    func populateWebView() -> Void {
         DispatchQueue.main.async {
+            var url : String = ""
+            if (self.app == "lab") {
+                url = self.websiteController.baseURL + ":" + String(self.websiteController.port) + "/?token=" + self.websiteController.token
+            }
+            else if (self.app == "notebook") {
+                url = self.websiteController.baseURL + ":" + String(self.websiteController.port) + "/notebooks/" + self.file
+            }
+            
             self.webView.load(URLRequest(url: URL(string:url)!))
             self.timer.invalidate()
         }
@@ -85,27 +94,54 @@ class ViewController: NSViewController, WKUIDelegate, ConsoleDelegate {
     
     func startJupyterServer() {
         consoleController = ConsoleController(_viewController: self)
+        consoleController?.runWithUserConfig(cmd: jupyterCommand())
+        setupTimer()
+    }
+    
+    func jupyterCommand() -> String {
         basePort += 1
         let auth_token : String = randomString(length: 30)
         websiteController = WebsiteController(_viewController: self, _baseURL: baseURL, _port: basePort, _token: auth_token)
-        //consoleController?.run(cmd: "/Users/felix/anaconda3/bin/jupyter", args: "lab", "--port=" + String(basePort), "--port-retries=0", "--NotebookApp.token=" + auth_token, "--NotebookApp.open_browser=false", "--NotebookApp.notebook_dir=" + directory)
+
+        var filePath : String = ""
+        if (file != "") {
+            app = "notebook"
+            filePath = (file == "" ? "" : (" " + directory + "/" + file))
+            
+        }
         
-        var app : String = "lab"
-        //if (file != "") {
-        //    app = "notebook"
-        //}
-        
-        consoleController?.runWithUserConfig(cmd: "jupyter " + app + " --port=" + String(basePort) + " --port-retries=0 --NotebookApp.token="
-                                                  + auth_token + " --NotebookApp.open_browser=false --NotebookApp.notebook_dir=" + directory)
-        setupTimer()
+        return "jupyter " + app + filePath
+                + " --port=" + String(basePort)
+                + " --port-retries=0"
+                + " --NotebookApp.token=" + auth_token
+                + " --NotebookApp.open_browser=False"
+                + " --NotebookApp.notebook_dir=" + directory
+                + " " + Preferences.shared.customFlags
+    }
+    
+    func setupWebView() {
+        webView.navigationDelegate = self
+        webView.uiDelegate = self
+    }
+    
+    func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
+        if let frame = navigationAction.targetFrame,
+            frame.isMainFrame {
+            return nil
+        }
+        // for _blank target or non-mainFrame target
+        webView.load(navigationAction.request)
+        return nil
+    }
+    
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        decisionHandler(WKNavigationActionPolicy(rawValue: WKNavigationActionPolicy.allow.rawValue + 2)!)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        directory = displayFolderPicker()
-        if (directory == "") { directory = "~" }
         setupView()
-        startJupyterServer()
+        setupWebView()
     }
     
     func changeTitle() {
@@ -126,6 +162,15 @@ class ViewController: NSViewController, WKUIDelegate, ConsoleDelegate {
     
     override func viewDidAppear() {
         super.viewDidAppear()
+        if (Preferences.shared.didStartFromContextAction) {
+            directory = Preferences.shared.folderPathForContextAction
+            file = Preferences.shared.fileNameForContextAction
+        }
+        else {
+            directory = displayFolderPicker()
+        }
+        if (directory == "") { directory = "~" }
+        startJupyterServer()
         changeTitle()
     }
     

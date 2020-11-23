@@ -28,10 +28,12 @@ class Preferences {
     var serverIP : String = ""
     var serverPort : Int = 0
     var customToken : String = ""
+    var customFlags : String = ""
     var disableJupyterServer : Bool = false
     
     var folderPathForContextAction : String = ""
     var fileNameForContextAction : String = ""
+    var didStartFromContextAction : Bool = false
     
     init() {
         loadPreferences()
@@ -42,6 +44,7 @@ class Preferences {
         settingsFile.set(serverPort, forKey: "serverPort")
         settingsFile.set(customToken, forKey: "customToken")
         settingsFile.set(disableJupyterServer, forKey: "disableJupyterServer")
+        settingsFile.set(customFlags, forKey: "customFlags")
         
         baseURL = serverIP
         basePort = serverPort - 1
@@ -52,5 +55,6 @@ class Preferences {
         serverPort = (settingsFile.integer(forKey: "serverPort") == 0) ? Preferences.defaults.serverPort : settingsFile.integer(forKey: "serverPort")
         customToken = settingsFile.string(forKey: "customToken") ?? customToken
         disableJupyterServer = settingsFile.bool(forKey: "disableJupyterServer")
+        customFlags = settingsFile.string(forKey: "customFlags") ?? ""
     }
 }

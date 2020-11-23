@@ -13,7 +13,7 @@
 			<key>NSMenuItem</key>
 			<dict>
 				<key>default</key>
-				<string>Open in Jupyter Debug</string>
+				<string>Jupyter here</string>
 			</dict>
 			<key>NSMessage</key>
 			<string>openFromContextWithURL</string>

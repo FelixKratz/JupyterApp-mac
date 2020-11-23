@@ -10,12 +10,10 @@ import Cocoa
 
 class WindowController : NSWindowController {
     @IBAction override func newWindowForTab(_ sender: Any?) {
-        let newWindowController = self.storyboard!.instantiateController(withIdentifier: "jupyter") as! NSWindowController
+        let delegate = NSApp.delegate as! AppDelegate
+        let newWindowController = delegate.storyBoard.instantiateController(withIdentifier: "jupyter") as! NSWindowController
         let newWindow = newWindowController.window!
         newWindow.windowController = self
         newWindowController.showWindow(self)
-    }
-    override func windowDidLoad() {
-        super.windowDidLoad()
     }
 }

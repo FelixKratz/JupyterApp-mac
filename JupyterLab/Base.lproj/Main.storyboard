@@ -66,11 +66,6 @@
                                                 <action selector="newFileClicked:" target="Voe-Tx-rLC" id="Ucm-R2-vz3"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Open…" keyEquivalent="o" id="IAo-SY-fd9">
-                                            <connections>
-                                                <action selector="openDocument:" target="Ady-hI-5gd" id="bVn-NM-KNZ"/>
-                                            </connections>
-                                        </menuItem>
                                         <menuItem title="Open Recent" id="tXI-mr-wws">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Open Recent" systemMenu="recentDocuments" id="oas-Oc-fiZ">
@@ -93,16 +88,6 @@
                                         <menuItem title="Save…" keyEquivalent="s" id="pxx-59-PXV">
                                             <connections>
                                                 <action selector="saveDocument:" target="Ady-hI-5gd" id="teZ-XB-qJY"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Save As…" keyEquivalent="S" id="Bw7-FT-i3A">
-                                            <connections>
-                                                <action selector="saveDocumentAs:" target="Ady-hI-5gd" id="mDf-zr-I0C"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Revert to Saved" keyEquivalent="r" id="KaW-ft-85H">
-                                            <connections>
-                                                <action selector="revertDocumentToSaved:" target="Ady-hI-5gd" id="iJ3-Pv-kwq"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="aJh-i4-bef"/>
@@ -784,7 +769,7 @@
             <objects>
                 <viewController id="YE8-3V-6Nn" customClass="SettingsViewController" customModule="JupyterLab" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="hHS-x7-aRz">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="142"/>
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="195"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R9X-PR-h5a">
@@ -799,7 +784,7 @@
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e1a-1D-Lfp">
                                 <rect key="frame" x="96" y="49" width="184" height="21"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Default: 127.0.0.1 (localhost)" drawsBackground="YES" id="xLZ-jO-OOr">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Default: http://127.0.0.1 (localhost)" drawsBackground="YES" id="xLZ-jO-OOr">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -863,7 +848,7 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7mo-lN-kLF">
-                                <rect key="frame" x="173" y="106" width="135" height="16"/>
+                                <rect key="frame" x="173" y="159" width="135" height="16"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Construction ongoing" id="o07-Fm-5Pg">
                                     <font key="font" metaFont="system"/>
@@ -871,17 +856,40 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="toO-FH-SQS">
-                                <rect key="frame" x="28" y="82" width="178" height="18"/>
+                            <button toolTip="This disables the automatic start of Jupyter servers and essentially makes this app a browser for existing Jupyter servers" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="toO-FH-SQS">
+                                <rect key="frame" x="28" y="135" width="178" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="Manually Manage Servers" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Unq-Sl-zea">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dPj-vE-d89">
+                                <rect key="frame" x="28" y="81" width="140" height="16"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Custom Jupyter Flags:" placeholderString="Default: 127.0.0.1 (localhost)" id="cbX-o5-lpT">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G8I-Wt-jXm">
+                                <rect key="frame" x="174" y="78" width="296" height="21"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="e.g.: --NotebookApp.autoreload=True" drawsBackground="YES" id="pL9-O6-QAe">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <accessibility identifier="serverIP"/>
+                                <connections>
+                                    <action selector="customFlagsChange:" target="YE8-3V-6Nn" id="XUQ-uI-Olk"/>
+                                </connections>
+                            </textField>
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="customFlagsTextBox" destination="G8I-Wt-jXm" id="LtM-Ow-oi2"/>
                         <outlet property="portTextBox" destination="CTy-AQ-Ikp" id="x50-zK-oNo"/>
                         <outlet property="serverIPTextBox" destination="e1a-1D-Lfp" id="5Wr-6f-EOw"/>
                         <outlet property="tokenTextBox" destination="Col-qT-AGb" id="rjx-d1-L1M"/>
@@ -889,7 +897,7 @@
                 </viewController>
                 <customObject id="Yng-tD-7YO" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1206" y="-355"/>
+            <point key="canvasLocation" x="1206" y="-328.5"/>
         </scene>
         <!--Console-->
         <scene sceneID="nRL-zs-wgU">

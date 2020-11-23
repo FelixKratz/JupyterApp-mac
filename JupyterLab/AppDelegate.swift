@@ -10,9 +10,11 @@ import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
+    let storyBoard : NSStoryboard = NSStoryboard.init(name: "Main", bundle: nil)
+    let jupyterWindowController : WindowController = WindowController()
 
     @IBAction func newTerminalAtFolderClicked(_ sender: Any) {
-        guard let currentViewController = NSApplication.shared.mainWindow?.contentViewController as? ViewController else {
+        guard let currentViewController = NSApp.mainWindow?.contentViewController as? ViewController else {
             return
         }
         //let out : String = runSynchronousShellWithUserConfig(cmd: "open -a Terminal " + currentViewController.directory) ?? ""
@@ -20,7 +22,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @IBAction func openFolderInFinderClicked(_ sender: Any) {
-        guard let currentViewController = NSApplication.shared.mainWindow?.contentViewController as? ViewController else {
+        guard let currentViewController = NSApp.mainWindow?.contentViewController as? ViewController else {
             return
         }
         //let out : String = runSynchronousShellWithUserConfig(cmd: "open " + currentViewController.directory) ?? ""
@@ -28,8 +30,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @IBAction func showConsoleClicked(_ sender: Any) {
-        guard let currentViewController = NSApplication.shared.mainWindow?.contentViewController as? ViewController else {
-            guard let currentViewController = NSApplication.shared.mainWindow?.contentViewController as? ConsoleViewController else {
+        guard let currentViewController = NSApp.mainWindow?.contentViewController as? ViewController else {
+            guard let currentViewController = NSApp.mainWindow?.contentViewController as? ConsoleViewController else {
                 return
             }
             currentViewController.view.window?.close()
@@ -42,7 +44,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             return
         }
         
-        let newWindowController = NSApplication.shared.mainWindow?.windowController?.storyboard!.instantiateController(withIdentifier: "console") as! NSWindowController
+        let newWindowController = storyBoard.instantiateController(withIdentifier: "console") as! NSWindowController
         guard let consoleViewController = newWindowController.contentViewController as? ConsoleViewController else {
             return
         }
@@ -53,7 +55,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBAction func restartClicked(_ sender: Any) {
         func restartFromConsoleWindow() {
-            guard let currentViewController = NSApplication.shared.mainWindow?.contentViewController as? ConsoleViewController else {
+            guard let currentViewController = NSApp.mainWindow?.contentViewController as? ConsoleViewController else {
                 return
             }
             let viewController : ViewController = (currentViewController.delegate?.getViewController())!
@@ -61,7 +63,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             viewController.startJupyterServer()
         }
         
-        guard let currentViewController = NSApplication.shared.mainWindow?.contentViewController as? ViewController else {
+        guard let currentViewController = NSApp.mainWindow?.contentViewController as? ViewController else {
             return restartFromConsoleWindow()
         }
         currentViewController.consoleController?.kill()
@@ -70,32 +72,36 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBAction func terminateClicked(_ sender: Any) {
         func terminateFromConsoleWindow() {
-            guard let currentViewController = NSApplication.shared.mainWindow?.contentViewController as? ConsoleViewController else {
+            guard let currentViewController = NSApp.mainWindow?.contentViewController as? ConsoleViewController else {
                 return
             }
             currentViewController.delegate?.getViewController().consoleController?.kill()
         }
         
-        guard let currentViewController = NSApplication.shared.mainWindow?.contentViewController as? ViewController else {
+        guard let currentViewController = NSApp.mainWindow?.contentViewController as? ViewController else {
             return terminateFromConsoleWindow()
         }
         currentViewController.consoleController?.kill()
     }
     
-
-    
     @IBAction func newFileClicked(_ sender: Any) {
-        let window : WindowController = NSApplication.shared.mainWindow?.windowController as! WindowController
+        guard let window : WindowController = NSApp.mainWindow?.windowController as? WindowController else {
+            let windowController : WindowController = storyBoard.instantiateController(withIdentifier: "jupyter") as! WindowController
+            windowController.window?.windowController = jupyterWindowController
+            windowController.window?.makeKeyAndOrderFront(self)
+            return
+        }
         window.newWindowForTab(self)
     }
     
-    func openWindow(name : String) {
-        let storyBoard : NSStoryboard = NSStoryboard.init(name: "Main", bundle: nil)
-        let prefWindowController : NSWindowController = storyBoard.instantiateController(withIdentifier: name) as! NSWindowController
-        prefWindowController.showWindow(self)
+    func openWindow(name : String) -> NSWindowController {
+        let windowController : NSWindowController = storyBoard.instantiateController(withIdentifier: name) as! NSWindowController
+        windowController.showWindow(self)
+        return windowController
     }
     
     @objc func openFromContextWithURL(_ pboard: NSPasteboard, userData:String, error: NSErrorPointer) {
+        Preferences.shared.didStartFromContextAction = true
         if let url = NSURL(from: pboard) {
             // TODO: Implement new JupyterLab ViewController here
             guard let path = url.path else {
@@ -111,14 +117,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             else {
                 Preferences.shared.folderPathForContextAction = url.path ?? ""
             }
-            
-       }
+        }
+        _ = openWindow(name: "jupyter")
     }
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
         NSApp.servicesProvider = self
-        openWindow(name: "preferences")
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

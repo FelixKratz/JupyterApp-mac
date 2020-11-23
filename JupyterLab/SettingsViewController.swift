@@ -12,6 +12,7 @@ class SettingsViewController : NSViewController {
     @IBOutlet weak var serverIPTextBox: NSTextField!
     @IBOutlet weak var portTextBox: NSTextField!
     @IBOutlet weak var tokenTextBox: NSTextField!
+    @IBOutlet weak var customFlagsTextBox: NSTextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,21 +20,28 @@ class SettingsViewController : NSViewController {
     }
     
     override func viewDidAppear() {
-        serverIPTextBox.stringValue = Preferences.shared.folderPathForContextAction//(Preferences.shared.serverIP == Preferences.defaults.serverIP) ? "" : Preferences.shared.serverIP
+        serverIPTextBox.stringValue = (Preferences.shared.serverIP == Preferences.defaults.serverIP) ? "" : Preferences.shared.serverIP
         
-        portTextBox.stringValue = Preferences.shared.fileNameForContextAction//(Preferences.shared.serverPort == Preferences.defaults.serverPort) ? "" : String(Preferences.shared.serverPort)
+        portTextBox.stringValue = (Preferences.shared.serverPort == Preferences.defaults.serverPort) ? "" : String(Preferences.shared.serverPort)
         
         tokenTextBox.stringValue = Preferences.shared.customToken
+        
+        customFlagsTextBox.stringValue = Preferences.shared.customFlags
         self.view.window?.styleMask.remove(.resizable)
     }
     
     override func viewWillDisappear() {
-        super.viewWillDisappear()
         updateStorageObject()
+        
+        super.viewWillDisappear()
     }
     
     @IBAction func generateButtonClicked(_ sender: Any) {
         tokenTextBox.stringValue = randomString(length: 30)
+    }
+    
+    @IBAction func customFlagsChange(_ sender: Any) {
+        updateStorageObject()
     }
     
     @IBAction func serverIPdidChange(_ sender: Any) {
@@ -49,10 +57,23 @@ class SettingsViewController : NSViewController {
     }
     
     func updateStorageObject() {
-        Preferences.shared.serverIP = serverIPTextBox.stringValue
-        Preferences.shared.serverPort = Int(portTextBox.stringValue) ?? Preferences.defaults.serverPort
+        if (serverIPTextBox.stringValue != "") {
+            Preferences.shared.serverIP = serverIPTextBox.stringValue
+        }
+        else {
+            Preferences.shared.serverIP = Preferences.defaults.serverIP
+        }
+        if (portTextBox.stringValue != "") {
+            Preferences.shared.serverPort = Int(portTextBox.stringValue) ?? Preferences.defaults.serverPort
+        }
+        else {
+            Preferences.shared.serverPort = Preferences.defaults.serverPort
+        }
+        
         Preferences.shared.customToken = tokenTextBox.stringValue
         
+        Preferences.shared.customFlags = customFlagsTextBox.stringValue
+
         Preferences.shared.savePreferences()
     }
 }
