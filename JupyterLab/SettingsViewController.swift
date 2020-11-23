@@ -13,6 +13,8 @@ class SettingsViewController : NSViewController {
     @IBOutlet weak var portTextBox: NSTextField!
     @IBOutlet weak var tokenTextBox: NSTextField!
     @IBOutlet weak var customFlagsTextBox: NSTextField!
+    @IBOutlet weak var disableServerStart: NSButton!
+    @IBOutlet weak var noteBooksInsteadOfLabs: NSButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,8 +27,10 @@ class SettingsViewController : NSViewController {
         portTextBox.stringValue = (Preferences.shared.serverPort == Preferences.defaults.serverPort) ? "" : String(Preferences.shared.serverPort)
         
         tokenTextBox.stringValue = Preferences.shared.customToken
-        
         customFlagsTextBox.stringValue = Preferences.shared.customFlags
+        disableServerStart.state = (Preferences.shared.disableJupyterServer) ? NSControl.StateValue.on : NSControl.StateValue.off
+        noteBooksInsteadOfLabs.state = (Preferences.shared.useNotebooks) ? NSControl.StateValue.on : NSControl.StateValue.off
+        
         self.view.window?.styleMask.remove(.resizable)
     }
     
@@ -36,8 +40,17 @@ class SettingsViewController : NSViewController {
         super.viewWillDisappear()
     }
     
+    @IBAction func disableAutomaticServerStartToggled(_ sender: Any) {
+        updateStorageObject()
+    }
+    
+    @IBAction func useNotebooksInsteadOfLabsToggled(_ sender: Any) {
+        updateStorageObject()
+    }
+    
     @IBAction func generateButtonClicked(_ sender: Any) {
         tokenTextBox.stringValue = randomString(length: 30)
+        updateStorageObject()
     }
     
     @IBAction func customFlagsChange(_ sender: Any) {
@@ -71,9 +84,10 @@ class SettingsViewController : NSViewController {
         }
         
         Preferences.shared.customToken = tokenTextBox.stringValue
-        
         Preferences.shared.customFlags = customFlagsTextBox.stringValue
-
+        Preferences.shared.disableJupyterServer = (disableServerStart.state == NSControl.StateValue.on)
+        Preferences.shared.useNotebooks = (noteBooksInsteadOfLabs.state == NSControl.StateValue.on)
+        
         Preferences.shared.savePreferences()
     }
 }

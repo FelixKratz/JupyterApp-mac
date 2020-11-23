@@ -93,8 +93,10 @@ class ViewController: NSViewController, WKUIDelegate, WKNavigationDelegate, Cons
     }
     
     func startJupyterServer() {
-        consoleController = ConsoleController(_viewController: self)
-        consoleController?.runWithUserConfig(cmd: jupyterCommand())
+        if (!Preferences.shared.disableJupyterServer) {
+            consoleController = ConsoleController(_viewController: self)
+            consoleController?.runWithUserConfig(cmd: jupyterCommand())
+        }
         setupTimer()
     }
     
@@ -103,14 +105,11 @@ class ViewController: NSViewController, WKUIDelegate, WKNavigationDelegate, Cons
         let auth_token : String = randomString(length: 30)
         websiteController = WebsiteController(_viewController: self, _baseURL: baseURL, _port: basePort, _token: auth_token)
 
-        var filePath : String = ""
-        if (file != "") {
+        if (Preferences.shared.useNotebooks) {
             app = "notebook"
-            filePath = (file == "" ? "" : (" " + directory + "/" + file))
-            
         }
         
-        return "jupyter " + app + filePath
+        return "jupyter " + app
                 + " --port=" + String(basePort)
                 + " --port-retries=0"
                 + " --NotebookApp.token=" + auth_token

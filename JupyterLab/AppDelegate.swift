@@ -112,10 +112,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             let type = attributes[FileAttributeKey.type] as? FileAttributeType
             if (!(type == FileAttributeType.typeDirectory)) {
                 Preferences.shared.fileNameForContextAction = url.lastPathComponent ?? ""
-                Preferences.shared.folderPathForContextAction = url.deletingLastPathComponent?.path ?? ""
+                Preferences.shared.folderPathForContextAction = url.deletingLastPathComponent?.path.replacingOccurrences(of: " ", with: "\\ ") ?? ""
             }
             else {
-                Preferences.shared.folderPathForContextAction = url.path ?? ""
+                Preferences.shared.folderPathForContextAction = url.path?.replacingOccurrences(of: " ", with: "\\ ") ?? ""
             }
         }
         _ = openWindow(name: "jupyter")
