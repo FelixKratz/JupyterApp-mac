@@ -751,8 +751,8 @@
         <scene sceneID="hAS-85-sdQ">
             <objects>
                 <windowController storyboardIdentifier="preferences" id="YYq-Tb-4FG" sceneMemberID="viewController">
-                    <window key="window" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" titlebarAppearsTransparent="YES" id="QDq-EO-5g0">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
+                    <window key="window" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" id="QDq-EO-5g0">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="425" y="461" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
@@ -773,11 +773,11 @@
             <objects>
                 <viewController id="YE8-3V-6Nn" customClass="SettingsViewController" customModule="JupyterApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="hHS-x7-aRz">
-                        <rect key="frame" x="0.0" y="0.0" width="523" height="190"/>
+                        <rect key="frame" x="0.0" y="0.0" width="523" height="267"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R9X-PR-h5a">
-                                <rect key="frame" x="18" y="52" width="93" height="16"/>
+                                <rect key="frame" x="18" y="141" width="93" height="16"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Server IP:" placeholderString="Default: 127.0.0.1 (localhost)" id="fEH-hV-apl">
                                     <font key="font" usesAppearanceFont="YES"/>
@@ -786,7 +786,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e1a-1D-Lfp">
-                                <rect key="frame" x="86" y="49" width="227" height="21"/>
+                                <rect key="frame" x="86" y="138" width="227" height="21"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Default: http://127.0.0.1 (localhost)" drawsBackground="YES" id="xLZ-jO-OOr">
                                     <font key="font" metaFont="system"/>
@@ -799,7 +799,7 @@
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ltT-cO-Fmi">
-                                <rect key="frame" x="319" y="52" width="34" height="16"/>
+                                <rect key="frame" x="319" y="141" width="34" height="16"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Port:" placeholderString="Default: 127.0.0.1 (localhost)" id="BPv-98-sml">
                                     <font key="font" usesAppearanceFont="YES"/>
@@ -808,7 +808,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CTy-AQ-Ikp">
-                                <rect key="frame" x="359" y="49" width="144" height="21"/>
+                                <rect key="frame" x="359" y="138" width="144" height="21"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Default: 8888 and up" drawsBackground="YES" id="UsT-wE-zUw">
                                     <font key="font" metaFont="system"/>
@@ -820,7 +820,7 @@
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bq7-Da-EOG">
-                                <rect key="frame" x="18" y="23" width="97" height="16"/>
+                                <rect key="frame" x="18" y="112" width="97" height="16"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Website Token:" id="doz-2I-eJ3">
                                     <font key="font" usesAppearanceFont="YES"/>
@@ -829,7 +829,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Col-qT-AGb">
-                                <rect key="frame" x="121" y="20" width="279" height="21"/>
+                                <rect key="frame" x="121" y="109" width="279" height="21"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Default: Random Alphanumeric String" drawsBackground="YES" id="b2c-SQ-qf4">
                                     <font key="font" metaFont="system"/>
@@ -840,17 +840,8 @@
                                     <action selector="tokenDidChange:" target="YE8-3V-6Nn" id="wtm-RT-tYg"/>
                                 </connections>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7mo-lN-kLF">
-                                <rect key="frame" x="331" y="126" width="135" height="16"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Construction ongoing" id="o07-Fm-5Pg">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dPj-vE-d89">
-                                <rect key="frame" x="18" y="81" width="140" height="16"/>
+                                <rect key="frame" x="18" y="170" width="140" height="16"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Custom Jupyter Flags:" placeholderString="Default: 127.0.0.1 (localhost)" id="cbX-o5-lpT">
                                     <font key="font" usesAppearanceFont="YES"/>
@@ -859,7 +850,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G8I-Wt-jXm">
-                                <rect key="frame" x="164" y="78" width="339" height="21"/>
+                                <rect key="frame" x="164" y="167" width="339" height="21"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="e.g.: --NotebookApp.autoreload=True" drawsBackground="YES" id="pL9-O6-QAe">
                                     <font key="font" metaFont="system"/>
@@ -872,7 +863,7 @@
                                 </connections>
                             </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wEu-H3-bli">
-                                <rect key="frame" x="402" y="13" width="107" height="32"/>
+                                <rect key="frame" x="402" y="99" width="107" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Generate" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zLD-r1-hdP">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -882,8 +873,19 @@
                                     <action selector="generateButtonClicked:" target="YE8-3V-6Nn" id="GTd-9o-G6Q"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y6V-jl-JoB">
+                                <rect key="frame" x="167" y="13" width="188" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Buy the dev a coffee ☕" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="csY-2l-50P">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="coffeeButtonClicked:" target="YE8-3V-6Nn" id="H5h-MX-MWa"/>
+                                </connections>
+                            </button>
                             <button toolTip="This disables the automatic start of Jupyter servers and essentially makes this app a browser for existing Jupyter servers" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="toO-FH-SQS">
-                                <rect key="frame" x="18" y="140" width="209" height="18"/>
+                                <rect key="frame" x="18" y="231" width="209" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="Disable Automatic Server Start" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Unq-Sl-zea">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -894,7 +896,7 @@
                                 </connections>
                             </button>
                             <button toolTip="This disables the automatic start of Jupyter servers and essentially makes this app a browser for existing Jupyter servers" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mRc-Ul-KH1">
-                                <rect key="frame" x="18" y="113" width="220" height="14"/>
+                                <rect key="frame" x="18" y="204" width="220" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="Use Notebooks instead of Labs" bezelStyle="regularSquare" imagePosition="left" inset="2" id="N1P-ar-kbw">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -904,6 +906,19 @@
                                     <action selector="useNotebooksInsteadOfLabsToggled:" target="YE8-3V-6Nn" id="HIO-cO-hus"/>
                                 </connections>
                             </button>
+                            <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="dyd-uW-VXY">
+                                <rect key="frame" x="20" y="84" width="483" height="5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </box>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fxZ-N6-gzq">
+                                <rect key="frame" x="18" y="39" width="487" height="32"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" selectable="YES" title="If you enjoy this application and you want to support the developer, consider buying the dev a coffee:" id="4Dm-qo-c1F">
+                                    <font key="font" metaFont="system" size="12"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </view>
                     <connections>
@@ -917,7 +932,7 @@
                 </viewController>
                 <customObject id="Yng-tD-7YO" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1227.5" y="-331"/>
+            <point key="canvasLocation" x="1227.5" y="-292.5"/>
         </scene>
         <!--Console-->
         <scene sceneID="nRL-zs-wgU">

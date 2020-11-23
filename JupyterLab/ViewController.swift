@@ -164,6 +164,7 @@ class ViewController: NSViewController, WKUIDelegate, WKNavigationDelegate, Cons
         if (Preferences.shared.didStartFromContextAction) {
             directory = Preferences.shared.folderPathForContextAction
             file = Preferences.shared.fileNameForContextAction
+            Preferences.shared.didStartFromContextAction = false
         }
         else {
             directory = displayFolderPicker()

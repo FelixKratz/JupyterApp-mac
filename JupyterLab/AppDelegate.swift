@@ -118,7 +118,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 Preferences.shared.folderPathForContextAction = url.path?.replacingOccurrences(of: " ", with: "\\ ") ?? ""
             }
         }
-        _ = openWindow(name: "jupyter")
+        let windowController : WindowController = storyBoard.instantiateController(withIdentifier: "jupyter") as! WindowController
+        windowController.window?.windowController = jupyterWindowController
+        windowController.window?.makeKeyAndOrderFront(self)
     }
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {

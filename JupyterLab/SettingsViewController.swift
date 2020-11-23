@@ -48,6 +48,12 @@ class SettingsViewController : NSViewController {
         updateStorageObject()
     }
     
+    @IBAction func coffeeButtonClicked(_ sender: Any) {
+        if let url = URL(string: "https://www.github.com/FelixKratz") {
+            NSWorkspace.shared.open(url)
+        }
+    }
+    
     @IBAction func generateButtonClicked(_ sender: Any) {
         tokenTextBox.stringValue = randomString(length: 30)
         updateStorageObject()
