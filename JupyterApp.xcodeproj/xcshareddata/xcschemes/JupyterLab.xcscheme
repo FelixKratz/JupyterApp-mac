@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DC42DAEA25599080007D20CB"
-               BuildableName = "JupyterLab.app"
-               BlueprintName = "JupyterLab"
-               ReferencedContainer = "container:JupyterLab.xcodeproj">
+               BuildableName = "JupyterApp.app"
+               BlueprintName = "JupyterApp"
+               ReferencedContainer = "container:JupyterApp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DC42DAFC25599083007D20CB"
-               BuildableName = "JupyterLabTests.xctest"
-               BlueprintName = "JupyterLabTests"
-               ReferencedContainer = "container:JupyterLab.xcodeproj">
+               BuildableName = "JupyterAppTests.xctest"
+               BlueprintName = "JupyterAppTests"
+               ReferencedContainer = "container:JupyterApp.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DC42DB0725599083007D20CB"
-               BuildableName = "JupyterLabUITests.xctest"
-               BlueprintName = "JupyterLabUITests"
-               ReferencedContainer = "container:JupyterLab.xcodeproj">
+               BuildableName = "JupyterAppUITests.xctest"
+               BlueprintName = "JupyterAppUITests"
+               ReferencedContainer = "container:JupyterApp.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -65,9 +65,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DC42DAEA25599080007D20CB"
-            BuildableName = "JupyterLab.app"
-            BlueprintName = "JupyterLab"
-            ReferencedContainer = "container:JupyterLab.xcodeproj">
+            BuildableName = "JupyterApp.app"
+            BlueprintName = "JupyterApp"
+            ReferencedContainer = "container:JupyterApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <EnvironmentVariables>
@@ -89,9 +89,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DC42DAEA25599080007D20CB"
-            BuildableName = "JupyterLab.app"
-            BlueprintName = "JupyterLab"
-            ReferencedContainer = "container:JupyterLab.xcodeproj">
+            BuildableName = "JupyterApp.app"
+            BlueprintName = "JupyterApp"
+            ReferencedContainer = "container:JupyterApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
