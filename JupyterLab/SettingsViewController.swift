@@ -49,7 +49,7 @@ class SettingsViewController : NSViewController {
     }
     
     @IBAction func coffeeButtonClicked(_ sender: Any) {
-        if let url = URL(string: "https://www.github.com/FelixKratz") {
+        if let url = URL(string:"https://www.paypal.com/donate?hosted_button_id=378TP7FW2CRYN") {
             NSWorkspace.shared.open(url)
         }
     }
