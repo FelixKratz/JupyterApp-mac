@@ -42,4 +42,4 @@ The settings allow you to change some default behaviour to your liking. <br>
 
 To save the settings, hit enter in the textfields! <br> <br>
 
-google-site-verification: google31f5d33f875b210a.html
+<meta name="google-site-verification" content="Mm_cTRc_yf8aq3xtLKXvvElRYgtzwvnQ_I_pVnRFKSc" />
