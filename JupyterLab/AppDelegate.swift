@@ -100,27 +100,37 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return windowController
     }
     
-    @objc func openFromContextWithURL(_ pboard: NSPasteboard, userData:String, error: NSErrorPointer) {
+    func openNewJupyterWindow(url : NSURL) {
         Preferences.shared.didStartFromContextAction = true
-        if let url = NSURL(from: pboard) {
-            // TODO: Implement new JupyterLab ViewController here
-            guard let path = url.path else {
+        guard let path = url.path else {
                 return
-            }
-            
-            let attributes = try! FileManager.default.attributesOfItem(atPath: path)
-            let type = attributes[FileAttributeKey.type] as? FileAttributeType
-            if (!(type == FileAttributeType.typeDirectory)) {
-                Preferences.shared.fileNameForContextAction = url.lastPathComponent ?? ""
-                Preferences.shared.folderPathForContextAction = url.deletingLastPathComponent?.path.replacingOccurrences(of: " ", with: "\\ ") ?? ""
-            }
-            else {
-                Preferences.shared.folderPathForContextAction = url.path?.replacingOccurrences(of: " ", with: "\\ ") ?? ""
-            }
         }
+            
+        let attributes = try! FileManager.default.attributesOfItem(atPath: path)
+        let type = attributes[FileAttributeKey.type] as? FileAttributeType
+        if (!(type == FileAttributeType.typeDirectory)) {
+            Preferences.shared.fileNameForContextAction = url.lastPathComponent ?? ""
+            Preferences.shared.folderPathForContextAction = url.deletingLastPathComponent?.path.replacingOccurrences(of: " ", with: "\\ ") ?? ""
+        }
+        else {
+            Preferences.shared.folderPathForContextAction = url.path?.replacingOccurrences(of: " ", with: "\\ ") ?? ""
+        }
+        
         let windowController : WindowController = storyBoard.instantiateController(withIdentifier: "jupyter") as! WindowController
         windowController.window?.windowController = jupyterWindowController
         windowController.window?.makeKeyAndOrderFront(self)
+    }
+    
+    @objc func openFromContextWithURL(_ pboard: NSPasteboard, userData:String, error: NSErrorPointer) {
+        if let url = NSURL(from: pboard) {
+            openNewJupyterWindow(url: url)
+        }
+    }
+    
+    func application(_ sender: NSApplication, openFiles filenames: [String]) {
+        for file in filenames {
+            openNewJupyterWindow(url: NSURL(fileURLWithPath: file))
+        }
     }
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {

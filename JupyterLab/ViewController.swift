@@ -51,10 +51,10 @@ class ViewController: NSViewController, WKUIDelegate, WKNavigationDelegate, Cons
         DispatchQueue.main.async {
             var url : String = ""
             if (self.app == "lab") {
-                url = self.websiteController.baseURL + ":" + String(self.websiteController.port) + "/?token=" + self.websiteController.token
+                url = self.websiteController.baseURL + ":" + String(self.websiteController.port) + (self.file == "" ? "" : ("/tree/" + self.file.replacingOccurrences(of: " ", with: "%20"))) + "?token=" + self.websiteController.token
             }
             else if (self.app == "notebook") {
-                url = self.websiteController.baseURL + ":" + String(self.websiteController.port) + "/notebooks/" + self.file
+                url = self.websiteController.baseURL + ":" + String(self.websiteController.port) + "/notebooks/" + self.file.replacingOccurrences(of: " ", with: "%20")
             }
             
             self.webView.load(URLRequest(url: URL(string:url)!))
@@ -106,7 +106,7 @@ class ViewController: NSViewController, WKUIDelegate, WKNavigationDelegate, Cons
         websiteController = WebsiteController(_viewController: self, _baseURL: baseURL, _port: basePort, _token: auth_token)
 
         if (Preferences.shared.useNotebooks) {
-            app = "notebook"
+            //app = "notebook"
         }
         
         return "jupyter " + app
