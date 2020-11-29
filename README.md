@@ -41,3 +41,5 @@ The settings allow you to change some default behaviour to your liking. <br>
 * Website Token: If you want to access the server with a different browser, or device, you need the token. By default the token is a 30 character random alphanumeric string (probably not cryptosafe, so don't use for nuclear missle code storage). You can also choose to generate a static alphanumeric string, which will then always be the same for any further servers. <br> <br>
 
 To save the settings, hit enter in the textfields! <br> <br>
+
+<meta name="google-site-verification" content="Mm_cTRc_yf8aq3xtLKXvvElRYgtzwvnQ_I_pVnRFKSc" />
