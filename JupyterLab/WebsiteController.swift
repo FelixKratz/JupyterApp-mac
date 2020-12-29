@@ -12,7 +12,7 @@ import WebKit
 class WebsiteController {
     let baseURL : String
     var port : Int
-    private let viewController : ViewController?
+    weak private var viewController : ViewController?
     let token : String
     
     init() {
@@ -40,6 +40,5 @@ class WebsiteController {
         let url = URL(string: baseURL + ":" + String(port))
         let task = URLSession.shared.dataTask(with: url!, completionHandler: self.completionHandler);
         task.resume()
-
     }
 }

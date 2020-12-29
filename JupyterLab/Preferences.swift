@@ -37,8 +37,14 @@ class Preferences {
     var fileNameForContextAction : String = ""
     var didStartFromContextAction : Bool = false
     
+    var terminate : Bool = false
+    
     init() {
         loadPreferences()
+    }
+    
+    func willTerminate() -> Void {
+        terminate = true
     }
     
     func savePreferences() -> Void {

@@ -27,6 +27,7 @@ class ViewController: NSViewController, WKUIDelegate, WKNavigationDelegate, Cons
     var directory : String = ""
     var file : String = ""
     var app : String = "lab"
+    var isRunning : Bool = false
     
     weak var consoleDataDelegate : ConsoleDataDelegate?
     
@@ -98,6 +99,7 @@ class ViewController: NSViewController, WKUIDelegate, WKNavigationDelegate, Cons
             consoleController?.runWithUserConfig(cmd: jupyterCommand())
         }
         setupTimer()
+        isRunning = true
     }
     
     func jupyterCommand() -> String {
@@ -161,6 +163,9 @@ class ViewController: NSViewController, WKUIDelegate, WKNavigationDelegate, Cons
     
     override func viewDidAppear() {
         super.viewDidAppear()
+        
+        if (isRunning) { return }
+        
         if (Preferences.shared.didStartFromContextAction) {
             directory = Preferences.shared.folderPathForContextAction
             file = Preferences.shared.fileNameForContextAction
@@ -176,6 +181,14 @@ class ViewController: NSViewController, WKUIDelegate, WKNavigationDelegate, Cons
     
     override func viewWillDisappear() {
         super.viewWillDisappear()
+        if (Preferences.shared.terminate) {
+            print("Disappear kill")
+            consoleController?.kill()
+        }
+    }
+    
+    deinit {
+        print("ViewController deinit")
         consoleController?.kill()
     }
 }

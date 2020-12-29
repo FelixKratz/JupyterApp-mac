@@ -55,7 +55,7 @@ class ConsoleController {
     var dataObserver: NSObjectProtocol!
     let notificationCenter = NotificationCenter.default
     let dataNotificationName = NSNotification.Name.NSFileHandleDataAvailable
-    let viewController : ViewController?
+    weak var viewController : ViewController?
     var output : String = ""
     var formattedOutput : String = ""
     
@@ -173,6 +173,7 @@ class ConsoleController {
     }
     
     deinit {
+        print("ConsoleController deinit")
         kill()
     }
 }
