@@ -9,8 +9,8 @@
 import Cocoa
 import WebKit
 
-var baseURL : String = "http://127.0.0.1"//Preferences.shared.serverIP
-var basePort : Int = 8887//Preferences.shared.serverPort - 1
+var baseURL : String = Preferences.shared.serverIP
+var basePort : Int = Preferences.shared.serverPort - 1
 
 protocol ConsoleDelegate : class  {
     func getConsoleController() -> ConsoleController
@@ -83,10 +83,6 @@ class ViewController: NSViewController, WKUIDelegate, WKNavigationDelegate, Cons
 
         if (dialog.runModal() ==  NSApplication.ModalResponse.OK) {
             if let result = dialog.url {
-                //if (result.isFileURL) {
-                //    file = result.lastPathComponent
-                //   return result.deletingLastPathComponent().path.replacingOccurrences(of: " ", with: "\\ ")
-                //}
                 return result.path.replacingOccurrences(of: " ", with: "\\ ")
             }
         }
@@ -108,7 +104,7 @@ class ViewController: NSViewController, WKUIDelegate, WKNavigationDelegate, Cons
         websiteController = WebsiteController(_viewController: self, _baseURL: baseURL, _port: basePort, _token: auth_token)
 
         if (Preferences.shared.useNotebooks) {
-            //app = "notebook"
+            app = "notebook"
         }
         
         return "jupyter " + app

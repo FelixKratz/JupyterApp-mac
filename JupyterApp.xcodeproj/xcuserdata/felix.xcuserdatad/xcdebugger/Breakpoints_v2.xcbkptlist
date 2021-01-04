@@ -15,9 +15,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "192"
-            endingLineNumber = "192"
-            landmarkName = "deinit"
-            landmarkType = "7">
+            endingLineNumber = "192">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -30,10 +28,8 @@
             filePath = "JupyterLab/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "193"
-            endingLineNumber = "193"
-            landmarkName = "deinit"
-            landmarkType = "7">
+            startingLineNumber = "192"
+            endingLineNumber = "192">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
