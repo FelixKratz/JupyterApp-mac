@@ -100,7 +100,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return windowController
     }
     
-    func openNewJupyterWindow(url : NSURL) {
+    func openNewJupyterWindow(url : NSURL, dropFile : Bool = false) {
         Preferences.shared.didStartFromContextAction = true
         guard let path = url.path else {
                 return
@@ -109,7 +109,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let attributes = try! FileManager.default.attributesOfItem(atPath: path)
         let type = attributes[FileAttributeKey.type] as? FileAttributeType
         if (!(type == FileAttributeType.typeDirectory)) {
-            Preferences.shared.fileNameForContextAction = url.lastPathComponent ?? ""
+            Preferences.shared.fileNameForContextAction = dropFile ? "" : (url.lastPathComponent ?? "")
             Preferences.shared.folderPathForContextAction = url.deletingLastPathComponent?.path.replacingOccurrences(of: " ", with: "\\ ") ?? ""
         }
         else {
@@ -123,7 +123,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @objc func openFromContextWithURL(_ pboard: NSPasteboard, userData:String, error: NSErrorPointer) {
         if let url = NSURL(from: pboard) {
-            openNewJupyterWindow(url: url)
+            openNewJupyterWindow(url: url, dropFile: !Preferences.shared.useNotebooks)
         }
     }
     
