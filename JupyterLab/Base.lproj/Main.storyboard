@@ -332,6 +332,12 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Server" id="r4k-Jp-6P2">
                                     <items>
+                                        <menuItem title="Open in Browser" keyEquivalent="b" id="6h7-w8-eAy">
+                                            <modifierMask key="keyEquivalentModifierMask" control="YES"/>
+                                            <connections>
+                                                <action selector="openInBrowserClicked:" target="Voe-Tx-rLC" id="Iwz-g9-T71"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem title="Show Jupyter Console" keyEquivalent="c" id="cm5-Ru-lj9">
                                             <modifierMask key="keyEquivalentModifierMask" control="YES"/>
                                             <connections>
@@ -914,7 +920,7 @@
                                 <rect key="frame" x="18" y="39" width="487" height="32"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <textFieldCell key="cell" selectable="YES" title="If you enjoy this application and you want to support the developer, consider buying the dev a coffee:" id="4Dm-qo-c1F">
-                                    <font key="font" metaFont="system" size="12"/>
+                                    <font key="font" metaFont="cellTitle"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -945,15 +951,15 @@
                             <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ixh-lB-ghc">
                                 <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                                 <clipView key="contentView" copiesOnScroll="NO" id="dFF-3m-2cN">
-                                    <rect key="frame" x="0.0" y="0.0" width="435" height="300"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView editable="NO" importsGraphics="NO" verticallyResizable="YES" findStyle="bar" allowsCharacterPickerTouchBarItem="NO" allowsDocumentBackgroundColorChange="YES" textCompletion="NO" smartInsertDelete="YES" id="SJf-0y-dmb">
-                                            <rect key="frame" x="0.0" y="0.0" width="435" height="300"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="textColor" name="systemGreenColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <size key="minSize" width="435" height="300"/>
+                                            <size key="minSize" width="450" height="300"/>
                                             <size key="maxSize" width="450" height="10000000"/>
                                             <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                         </textView>
@@ -964,7 +970,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="VlM-Zm-J1K">
-                                    <rect key="frame" x="435" y="0.0" width="15" height="300"/>
+                                    <rect key="frame" x="434" y="0.0" width="16" height="300"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>

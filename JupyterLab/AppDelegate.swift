@@ -13,6 +13,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let storyBoard : NSStoryboard = NSStoryboard.init(name: "Main", bundle: nil)
     let jupyterWindowController : WindowController = WindowController()
 
+    @IBAction func openInBrowserClicked(_ sender: Any) {
+        guard let currentViewController = NSApp.mainWindow?.contentViewController as? ViewController else {
+            return
+        }
+        //let out : String = runSynchronousShellWithUserConfig(cmd: "open -a Terminal " + currentViewController.directory) ?? ""
+        if let url = URL(string: currentViewController.url) {
+            NSWorkspace.shared.open(url)
+        }
+    }
+    
     @IBAction func newTerminalAtFolderClicked(_ sender: Any) {
         guard let currentViewController = NSApp.mainWindow?.contentViewController as? ViewController else {
             return

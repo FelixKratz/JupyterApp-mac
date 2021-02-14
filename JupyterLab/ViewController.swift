@@ -28,6 +28,7 @@ class ViewController: NSViewController, WKUIDelegate, WKNavigationDelegate, Cons
     var file : String = ""
     var app : String = "lab"
     var isRunning : Bool = false
+    var url : String = ""
     
     weak var consoleDataDelegate : ConsoleDataDelegate?
     
@@ -50,15 +51,14 @@ class ViewController: NSViewController, WKUIDelegate, WKNavigationDelegate, Cons
     
     func populateWebView() -> Void {
         DispatchQueue.main.async {
-            var url : String = ""
             if (self.app == "lab") {
-                url = self.websiteController.baseURL + ":" + String(self.websiteController.port) + (self.file == "" ? "" : ("/tree/" + self.file.replacingOccurrences(of: " ", with: "%20"))) + "?token=" + self.websiteController.token
+                self.url = self.websiteController.baseURL + ":" + String(self.websiteController.port) + (self.file == "" ? "" : ("/tree/" + self.file.replacingOccurrences(of: " ", with: "%20"))) + "?token=" + self.websiteController.token
             }
             else if (self.app == "notebook") {
-                url = self.websiteController.baseURL + ":" + String(self.websiteController.port) + "/notebooks/" + self.file.replacingOccurrences(of: " ", with: "%20")
+                self.url = self.websiteController.baseURL + ":" + String(self.websiteController.port) + "/notebooks/" + self.file.replacingOccurrences(of: " ", with: "%20")
             }
             
-            self.webView.load(URLRequest(url: URL(string:url)!))
+            self.webView.load(URLRequest(url: URL(string:self.url)!))
             self.timer.invalidate()
         }
     }
@@ -78,7 +78,7 @@ class ViewController: NSViewController, WKUIDelegate, WKNavigationDelegate, Cons
         dialog.title = "Choose jupyter directory";
         dialog.showsResizeIndicator = true;
         dialog.showsHiddenFiles = false;
-        dialog.canChooseFiles = true;
+        dialog.canChooseFiles = false;
         dialog.canChooseDirectories = true;
 
         if (dialog.runModal() ==  NSApplication.ModalResponse.OK) {
@@ -143,7 +143,7 @@ class ViewController: NSViewController, WKUIDelegate, WKNavigationDelegate, Cons
     
     func changeTitle() {
         let truncatedPath : String = getTruncatedPath()
-        self.view.window?.title = "JupyterLab - " + truncatedPath
+        self.view.window?.title = "Jupyter - " + truncatedPath
     }
     
     func getTruncatedPath(count : Int = 3) -> String {
