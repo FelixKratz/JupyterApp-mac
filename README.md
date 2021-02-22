@@ -4,15 +4,17 @@ If you find bugs (which is very likely) please tell me in the [Issues](https://g
 
 ## Prerequisites
 To install jupyter please follow the guide on https://jupyter.org/install.
-For this application to work jupyter must be accessible in a default interactive login shell 
+For this application to work jupyter must be accessible in a default interactive login shell
 (you can test this by opening a fresh terminal and typing: jupyter --version, you should get a list of components and versions).
 
 ## Functionalities
 ### Finder Integration: Use the finder to start a new jupyter server: <br>
 ![Image](Images/FinderIntegration.png) <br>
-If used on a folder this will, by default, open a new jupyter lab server with its root at the folder path.
+"Double Click" on a .ipynb file will open a notebook server on this file. <br>
+"Right Click -> Jupyter here" on a folder will, by default, open a new jupyter lab server with its root at the folder path.<br>
 If used on a file this will, by default, open a server with its root at the folder in which the file is located. <br>
-The default behaviour can be customized in the Preferences to open a jupyter notebook server instead. <br> <br>
+The default behaviour can be customised in the Preferences to open a jupyter notebook server instead. <br> <br>
+
 
 ### Tabbed View and Multi Window Support <br>
 ![Image](Images/TabbedViews.png) <br>
@@ -32,7 +34,7 @@ You can the hotkeys to open a new Terminal window at the root project folder and
 ![Image](Images/settingsPane.png) <br>
 The settings allow you to change some default behaviour to your liking. <br>
 * Disabling the automatic start of jupyter servers altogether (essentially turning this app into a clunky web browser)
-* Using jupyter notebooks instead of jupyter labs, as some people prefer notebooks over labs
+* Using jupyter notebooks instead of jupyter labs for the "Right Click -> Jupyter here" Finder action, as some people prefer notebooks over labs
 * Adding custom jupyter startup flags for a full list of flags run: jupyter lab --help-all <br>
  The flags "--port, --port-retries, --NotebookApp.token, --NotebookApp.open_browser and --NotebookApp.notebook_dir" are always set by the system to
  handle invoking a new server and setting up the token, port, directory, etc. so those should not be specified there.
@@ -41,5 +43,3 @@ The settings allow you to change some default behaviour to your liking. <br>
 * Website Token: If you want to access the server with a different browser, or device, you need the token. By default the token is a 30 character random alphanumeric string (probably not cryptosafe, so don't use for nuclear missle code storage). You can also choose to generate a static alphanumeric string, which will then always be the same for any further servers. <br> <br>
 
 To save the settings, hit enter in the textfields! <br> <br>
-
-<meta name="google-site-verification" content="Mm_cTRc_yf8aq3xtLKXvvElRYgtzwvnQ_I_pVnRFKSc" />
