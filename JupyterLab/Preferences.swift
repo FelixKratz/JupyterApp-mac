@@ -31,7 +31,7 @@ class Preferences {
     var customToken : String = ""
     var customFlags : String = ""
     var disableJupyterServer : Bool = false
-    var useNotebooks : Bool = false
+    var useNotebooksOnFolder : Bool = false
     
     var folderPathForContextAction : String = ""
     var fileNameForContextAction : String = ""
@@ -52,7 +52,7 @@ class Preferences {
         settingsFile.set(serverPort, forKey: "serverPort")
         settingsFile.set(customToken, forKey: "customToken")
         settingsFile.set(disableJupyterServer, forKey: "disableJupyterServer")
-        settingsFile.set(useNotebooks, forKey: "useNotebooks")
+        settingsFile.set(useNotebooksOnFolder, forKey: "useNotebooks")
         settingsFile.set(customFlags, forKey: "customFlags")
         
         baseURL = serverIP
@@ -64,7 +64,13 @@ class Preferences {
         serverPort = (settingsFile.integer(forKey: "serverPort") == 0) ? Preferences.defaults.serverPort : settingsFile.integer(forKey: "serverPort")
         customToken = settingsFile.string(forKey: "customToken") ?? customToken
         disableJupyterServer = settingsFile.bool(forKey: "disableJupyterServer")
-        useNotebooks = settingsFile.bool(forKey: "useNotebooks")
+        useNotebooksOnFolder = settingsFile.bool(forKey: "useNotebooks")
         customFlags = settingsFile.string(forKey: "customFlags") ?? ""
+    }
+    
+    func resetContextAction() -> Void {
+        didStartFromContextAction = false
+        fileNameForContextAction = ""
+        folderPathForContextAction = ""
     }
 }

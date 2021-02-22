@@ -103,7 +103,7 @@ class ViewController: NSViewController, WKUIDelegate, WKNavigationDelegate, Cons
         let auth_token : String = randomString(length: 30)
         websiteController = WebsiteController(_viewController: self, _baseURL: baseURL, _port: basePort, _token: auth_token)
 
-        if (Preferences.shared.useNotebooks) {
+        if (Preferences.shared.useNotebooksOnFolder && file == "" || file != "") {
             app = "notebook"
         }
         
@@ -143,7 +143,7 @@ class ViewController: NSViewController, WKUIDelegate, WKNavigationDelegate, Cons
     
     func changeTitle() {
         let truncatedPath : String = getTruncatedPath()
-        self.view.window?.title = "Jupyter - " + truncatedPath
+        self.view.window?.title = app + " - " + truncatedPath + "/" + file
     }
     
     func getTruncatedPath(count : Int = 3) -> String {
@@ -165,7 +165,7 @@ class ViewController: NSViewController, WKUIDelegate, WKNavigationDelegate, Cons
         if (Preferences.shared.didStartFromContextAction) {
             directory = Preferences.shared.folderPathForContextAction
             file = Preferences.shared.fileNameForContextAction
-            Preferences.shared.didStartFromContextAction = false
+            Preferences.shared.resetContextAction()
         }
         else {
             directory = displayFolderPicker()

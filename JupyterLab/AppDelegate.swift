@@ -133,7 +133,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @objc func openFromContextWithURL(_ pboard: NSPasteboard, userData:String, error: NSErrorPointer) {
         if let url = NSURL(from: pboard) {
-            openNewJupyterWindow(url: url, dropFile: !Preferences.shared.useNotebooks)
+            openNewJupyterWindow(url: url, dropFile: true) //!Preferences.shared.useNotebooksOnFolder)
         }
     }
     

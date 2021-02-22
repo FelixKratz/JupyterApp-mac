@@ -29,7 +29,7 @@ class SettingsViewController : NSViewController {
         tokenTextBox.stringValue = Preferences.shared.customToken
         customFlagsTextBox.stringValue = Preferences.shared.customFlags
         disableServerStart.state = (Preferences.shared.disableJupyterServer) ? NSControl.StateValue.on : NSControl.StateValue.off
-        noteBooksInsteadOfLabs.state = (Preferences.shared.useNotebooks) ? NSControl.StateValue.on : NSControl.StateValue.off
+        noteBooksInsteadOfLabs.state = (Preferences.shared.useNotebooksOnFolder) ? NSControl.StateValue.on : NSControl.StateValue.off
         
         self.view.window?.styleMask.remove(.resizable)
     }
@@ -92,7 +92,7 @@ class SettingsViewController : NSViewController {
         Preferences.shared.customToken = tokenTextBox.stringValue
         Preferences.shared.customFlags = customFlagsTextBox.stringValue
         Preferences.shared.disableJupyterServer = (disableServerStart.state == NSControl.StateValue.on)
-        Preferences.shared.useNotebooks = (noteBooksInsteadOfLabs.state == NSControl.StateValue.on)
+        Preferences.shared.useNotebooksOnFolder = (noteBooksInsteadOfLabs.state == NSControl.StateValue.on)
         
         Preferences.shared.savePreferences()
     }
