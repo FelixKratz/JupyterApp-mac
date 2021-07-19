@@ -55,7 +55,7 @@ class ViewController: NSViewController, WKUIDelegate, WKNavigationDelegate, Cons
                 self.url = self.websiteController.baseURL + ":" + String(self.websiteController.port) + (self.file == "" ? "" : ("/tree/" + self.file.replacingOccurrences(of: " ", with: "%20"))) + "?token=" + self.websiteController.token
             }
             else if (self.app == "notebook") {
-                self.url = self.websiteController.baseURL + ":" + String(self.websiteController.port) + "/notebooks/" + self.file.replacingOccurrences(of: " ", with: "%20")
+                self.url = self.websiteController.baseURL + ":" + String(self.websiteController.port) + "/notebooks/" + self.file.replacingOccurrences(of: " ", with: "%20") + "/?token=" + self.websiteController.token
             }
             
             self.webView.load(URLRequest(url: URL(string:self.url)!))
@@ -108,10 +108,15 @@ class ViewController: NSViewController, WKUIDelegate, WKNavigationDelegate, Cons
         }
         
         return "jupyter " + app
-                + " --port=" + String(basePort)
-                + " --port-retries=0"
+                + " --LabApp.port=" + String(basePort)
+                + " --NotebookApp.port=" + String(basePort)
+                + " --LabApp.port_retries=0"
+                + " --NotebookApp.port_retries=0"
+                + " --LabApp.token=" + auth_token
                 + " --NotebookApp.token=" + auth_token
+                + " --LabApp.open_browser=False"
                 + " --NotebookApp.open_browser=False"
+                + " --LabApp.notebook_dir=" + directory
                 + " --NotebookApp.notebook_dir=" + directory
                 + " " + Preferences.shared.customFlags
     }
@@ -142,7 +147,7 @@ class ViewController: NSViewController, WKUIDelegate, WKNavigationDelegate, Cons
     }
     
     func changeTitle() {
-        let truncatedPath : String = getTruncatedPath()
+        let truncatedPath : String = getTruncatedPath(count: (file == "") ? 3 : 2)
         self.view.window?.title = app + " - " + truncatedPath + "/" + file
     }
     

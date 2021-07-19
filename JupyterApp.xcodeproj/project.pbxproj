@@ -13,7 +13,6 @@
 		DC083C6F25D9649200676713 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC083C6E25D9649200676713 /* PreviewViewController.swift */; };
 		DC083C7225D9649200676713 /* PreviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC083C7025D9649200676713 /* PreviewViewController.xib */; };
 		DC083C7725D9649200676713 /* JupyterPreview.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = DC083C6B25D9649200676713 /* JupyterPreview.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		DC2C35E32565DC11002C1118 /* DebugLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2C35E22565DC11002C1118 /* DebugLog.swift */; };
 		DC42DAEF25599080007D20CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC42DAEE25599080007D20CB /* AppDelegate.swift */; };
 		DC42DAF125599081007D20CB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC42DAF025599081007D20CB /* ViewController.swift */; };
 		DC42DAF325599082007D20CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC42DAF225599082007D20CB /* Assets.xcassets */; };
@@ -73,7 +72,6 @@
 		DC083C7125D9649200676713 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PreviewViewController.xib; sourceTree = "<group>"; };
 		DC083C7325D9649200676713 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DC083C7425D9649200676713 /* JupyterPreview.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = JupyterPreview.entitlements; sourceTree = "<group>"; };
-		DC2C35E22565DC11002C1118 /* DebugLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugLog.swift; sourceTree = "<group>"; };
 		DC42DAEB25599080007D20CB /* JupyterApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JupyterApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC42DAEE25599080007D20CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DC42DAF025599081007D20CB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -174,7 +172,6 @@
 				DC42DAF225599082007D20CB /* Assets.xcassets */,
 				DC42DAF725599082007D20CB /* Info.plist */,
 				DC42DAF825599082007D20CB /* JupyterLab.entitlements */,
-				DC2C35E22565DC11002C1118 /* DebugLog.swift */,
 			);
 			path = JupyterLab;
 			sourceTree = "<group>";
@@ -389,7 +386,6 @@
 			files = (
 				DCDD0A4E2560448000A483A7 /* ConsoleViewController.swift in Sources */,
 				DCA8529925630E80003B9CCE /* Preferences.swift in Sources */,
-				DC2C35E32565DC11002C1118 /* DebugLog.swift in Sources */,
 				DC9CF85D255F01E100946AD4 /* WebsiteController.swift in Sources */,
 				DC07E9D9255F387D0033B0C9 /* WindowController.swift in Sources */,
 				DC07E9D7255F1F4B0033B0C9 /* ConsoleController.swift in Sources */,
