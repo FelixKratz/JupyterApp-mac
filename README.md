@@ -7,6 +7,11 @@ To install jupyter please follow the guide on https://jupyter.org/install.
 For this application to work jupyter must be accessible in a default interactive login shell
 (you can test this by opening a fresh terminal and typing: jupyter --version, you should get a list of components and versions).
 
+## Installing
+Clone the repository and open the *JupyterApp.xcodeproj* file in xCode, compile the project with your own development team set in
+*Signing & Capabilities*. You can also export the compiled app by archiving the project (Product->Archive) and move the JupyterApp.app
+contained in the archive to your Applications folder.
+
 ## Functionalities
 ### Finder Integration: Use the finder to start a new jupyter server: <br>
 ![Image](Images/FinderIntegration.png) <br>
