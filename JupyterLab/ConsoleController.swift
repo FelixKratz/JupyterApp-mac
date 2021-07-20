@@ -165,7 +165,7 @@ class ConsoleController {
     
     func runWithUserConfig(cmd : String) {
         task.currentDirectoryPath = "/"
-        run(cmd: "/usr/bin/env", args: "bash", "-i", "-l", "-c", cmd)
+        run(cmd: "/usr/bin/env", args: "zsh", "-i", "-l", "-c", cmd)
     }
     
     func kill() {
