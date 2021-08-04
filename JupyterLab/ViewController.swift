@@ -55,7 +55,7 @@ class ViewController: NSViewController, WKUIDelegate, WKNavigationDelegate, Cons
                 self.url = self.websiteController.baseURL + ":" + String(self.websiteController.port) + (self.file == "" ? "" : ("/tree/" + self.file.replacingOccurrences(of: " ", with: "%20"))) + "?token=" + self.websiteController.token
             }
             else if (self.app == "notebook") {
-                self.url = self.websiteController.baseURL + ":" + String(self.websiteController.port) + "/notebooks/" + self.file.replacingOccurrences(of: " ", with: "%20") + "/?token=" + self.websiteController.token
+                self.url = self.websiteController.baseURL + ":" + String(self.websiteController.port) + "/notebooks/" + self.file.replacingOccurrences(of: " ", with: "%20") + "?token=" + self.websiteController.token
             }
             
             self.webView.load(URLRequest(url: URL(string:self.url)!))
