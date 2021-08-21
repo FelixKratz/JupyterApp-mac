@@ -15,6 +15,8 @@ class SettingsViewController : NSViewController {
     @IBOutlet weak var customFlagsTextBox: NSTextField!
     @IBOutlet weak var disableServerStart: NSButton!
     @IBOutlet weak var noteBooksInsteadOfLabs: NSButton!
+    @IBOutlet weak var clickActionPopUpButtion: NSPopUpButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +33,13 @@ class SettingsViewController : NSViewController {
         disableServerStart.state = (Preferences.shared.disableJupyterServer) ? NSControl.StateValue.on : NSControl.StateValue.off
         noteBooksInsteadOfLabs.state = (Preferences.shared.useNotebooksOnFolder) ? NSControl.StateValue.on : NSControl.StateValue.off
         
+        if (Preferences.shared.useNotebooksOnFile) {
+            clickActionPopUpButtion.selectItem(withTitle: "Notebook")
+        }
+        else {
+            clickActionPopUpButtion.selectItem(withTitle: "Lab")
+        }
+        
         self.view.window?.styleMask.remove(.resizable)
     }
     
@@ -45,6 +54,10 @@ class SettingsViewController : NSViewController {
     }
     
     @IBAction func useNotebooksInsteadOfLabsToggled(_ sender: Any) {
+        updateStorageObject()
+    }
+    
+    @IBAction func clickActionChanged(_ sender: Any) {
         updateStorageObject()
     }
     
@@ -93,6 +106,7 @@ class SettingsViewController : NSViewController {
         Preferences.shared.customFlags = customFlagsTextBox.stringValue
         Preferences.shared.disableJupyterServer = (disableServerStart.state == NSControl.StateValue.on)
         Preferences.shared.useNotebooksOnFolder = (noteBooksInsteadOfLabs.state == NSControl.StateValue.on)
+        Preferences.shared.useNotebooksOnFile = (clickActionPopUpButtion.selectedItem?.title == "Notebook")
         
         Preferences.shared.savePreferences()
     }

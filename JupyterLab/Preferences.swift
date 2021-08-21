@@ -32,6 +32,7 @@ class Preferences {
     var customFlags : String = ""
     var disableJupyterServer : Bool = false
     var useNotebooksOnFolder : Bool = false
+    var useNotebooksOnFile : Bool = true
     
     var folderPathForContextAction : String = ""
     var fileNameForContextAction : String = ""
@@ -53,6 +54,7 @@ class Preferences {
         settingsFile.set(customToken, forKey: "customToken")
         settingsFile.set(disableJupyterServer, forKey: "disableJupyterServer")
         settingsFile.set(useNotebooksOnFolder, forKey: "useNotebooks")
+        settingsFile.set(useNotebooksOnFile, forKey: "useNotebooksOnFile")
         settingsFile.set(customFlags, forKey: "customFlags")
         
         baseURL = serverIP
@@ -65,6 +67,7 @@ class Preferences {
         customToken = settingsFile.string(forKey: "customToken") ?? customToken
         disableJupyterServer = settingsFile.bool(forKey: "disableJupyterServer")
         useNotebooksOnFolder = settingsFile.bool(forKey: "useNotebooks")
+        useNotebooksOnFile = settingsFile.bool(forKey: "useNotebooksOnFile")
         customFlags = settingsFile.string(forKey: "customFlags") ?? ""
     }
     

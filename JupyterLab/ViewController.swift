@@ -52,7 +52,7 @@ class ViewController: NSViewController, WKUIDelegate, WKNavigationDelegate, Cons
     func populateWebView() -> Void {
         DispatchQueue.main.async {
             if (self.app == "lab") {
-                self.url = self.websiteController.baseURL + ":" + String(self.websiteController.port) + (self.file == "" ? "" : ("/tree/" + self.file.replacingOccurrences(of: " ", with: "%20"))) + "?token=" + self.websiteController.token
+                self.url = self.websiteController.baseURL + ":" + String(self.websiteController.port)  + "?token=" + self.websiteController.token
             }
             else if (self.app == "notebook") {
                 self.url = self.websiteController.baseURL + ":" + String(self.websiteController.port) + "/notebooks/" + self.file.replacingOccurrences(of: " ", with: "%20") + "?token=" + self.websiteController.token
@@ -103,7 +103,7 @@ class ViewController: NSViewController, WKUIDelegate, WKNavigationDelegate, Cons
         let auth_token : String = randomString(length: 30)
         websiteController = WebsiteController(_viewController: self, _baseURL: baseURL, _port: basePort, _token: auth_token)
 
-        if (Preferences.shared.useNotebooksOnFolder && file == "" || file != "") {
+        if (Preferences.shared.useNotebooksOnFolder && file == "" || (file != "" && Preferences.shared.useNotebooksOnFile)) {
             app = "notebook"
         }
         
