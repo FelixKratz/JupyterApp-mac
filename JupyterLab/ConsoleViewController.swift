@@ -8,7 +8,7 @@
 
 import Cocoa
 
-protocol ConsoleDataDelegate : class {
+protocol ConsoleDataDelegate : AnyObject {
     func updateConsoleData() -> Void
     func getViewController() -> ConsoleViewController
 }

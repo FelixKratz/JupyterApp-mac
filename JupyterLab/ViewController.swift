@@ -12,7 +12,7 @@ import WebKit
 var baseURL : String = Preferences.shared.serverIP
 var basePort : Int = Preferences.shared.serverPort - 1
 
-protocol ConsoleDelegate : class  {
+protocol ConsoleDelegate : AnyObject  {
     func getConsoleController() -> ConsoleController
     func consoleWillDisappear() -> Void
     func getTruncatedPath(count : Int) -> String
