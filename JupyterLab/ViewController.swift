@@ -29,6 +29,7 @@ class ViewController: NSViewController, WKUIDelegate, WKNavigationDelegate, Cons
     var app : String = "lab"
     var isRunning : Bool = false
     var url : String = ""
+    var documentController: NSDocumentController = NSDocumentController();
     
     weak var consoleDataDelegate : ConsoleDataDelegate?
     
@@ -83,6 +84,7 @@ class ViewController: NSViewController, WKUIDelegate, WKNavigationDelegate, Cons
 
         if (dialog.runModal() ==  NSApplication.ModalResponse.OK) {
             if let result = dialog.url {
+                documentController.noteNewRecentDocumentURL(result)
                 return result.path.replacingOccurrences(of: " ", with: "\\ ")
             }
         }
