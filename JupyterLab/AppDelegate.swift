@@ -27,8 +27,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         guard let currentViewController = NSApp.mainWindow?.contentViewController as? ViewController else {
             return
         }
-        //let out : String = runSynchronousShellWithUserConfig(cmd: "open -a Terminal " + currentViewController.directory) ?? ""
-        _ = runSynchronousShell(launchPath: "/usr/bin/open", args: "-a", "Terminal", currentViewController ?? ""
+        let terminalUrl = NSWorkspace.shared.urlForApplication(withBundleIdentifier: "com.googlecode.iterm2") ??
+            NSWorkspace.shared.urlForApplication(withBundleIdentifier: "com.apple.Terminal")!
+        
+        if #available(macOS 10.15, *) {
+            NSWorkspace.shared.open([URL(fileURLWithPath: currentViewController.directory)], withApplicationAt: terminalUrl, configuration: NSWorkspace.OpenConfiguration())
+        } else {
+            NSWorkspace.shared.openFile(currentViewController.directory, withApplication: terminalUrl.path)
+        }
     }
     
     @IBAction func openFolderInFinderClicked(_ sender: Any) {
