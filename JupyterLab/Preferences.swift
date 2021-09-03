@@ -58,7 +58,6 @@ class Preferences {
         settingsFile.set(customFlags, forKey: "customFlags")
         
         baseURL = serverIP
-        basePort = serverPort - 1
     }
     
     func loadPreferences() -> Void {
