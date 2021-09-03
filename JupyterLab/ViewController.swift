@@ -124,7 +124,7 @@ class ViewController: NSViewController, WKUIDelegate, WKNavigationDelegate, Cons
         if (dialog.runModal() ==  NSApplication.ModalResponse.OK) {
             if let result = dialog.url {
                 documentController.noteNewRecentDocumentURL(result)
-                return result.path.replacingOccurrences(of: " ", with: "\\ ")
+                return result.path
             }
         }
         return ""
@@ -163,8 +163,8 @@ class ViewController: NSViewController, WKUIDelegate, WKNavigationDelegate, Cons
                 + " --NotebookApp.token=" + auth_token
                 + " --LabApp.open_browser=False"
                 + " --NotebookApp.open_browser=False"
-                + " --LabApp.notebook_dir=" + directory
-                + " --NotebookApp.notebook_dir=" + directory
+                + " --LabApp.notebook_dir=\"" + directory + "\""
+                + " --NotebookApp.notebook_dir=\"" + directory + "\""
                 + " " + Preferences.shared.customFlags
     }
     
