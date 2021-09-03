@@ -1068,11 +1068,16 @@
                                                         <wkPreferences key="preferences"/>
                                                     </wkWebViewConfiguration>
                                                 </wkWebView>
+                                                <progressIndicator maxValue="100" displayedWhenStopped="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="amJ-X9-7rl">
+                                                    <rect key="frame" x="220" y="154" width="16" height="16"/>
+                                                </progressIndicator>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="mWO-sk-IFU" secondAttribute="bottom" id="6kC-tr-egq"/>
+                                                <constraint firstItem="amJ-X9-7rl" firstAttribute="centerX" secondItem="14v-Sb-yne" secondAttribute="centerX" id="FUP-M3-J00"/>
                                                 <constraint firstItem="mWO-sk-IFU" firstAttribute="top" secondItem="14v-Sb-yne" secondAttribute="top" id="Is4-KX-YZI"/>
                                                 <constraint firstAttribute="trailing" secondItem="mWO-sk-IFU" secondAttribute="trailing" id="K5Y-TE-Sm5"/>
+                                                <constraint firstItem="amJ-X9-7rl" firstAttribute="centerY" secondItem="14v-Sb-yne" secondAttribute="centerY" id="qcQ-PL-p0O"/>
                                                 <constraint firstItem="mWO-sk-IFU" firstAttribute="leading" secondItem="14v-Sb-yne" secondAttribute="leading" id="usg-P9-4iu"/>
                                             </constraints>
                                         </view>
@@ -1088,6 +1093,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="progressIndicator" destination="amJ-X9-7rl" id="viA-4i-Eeq"/>
                         <outlet property="webView" destination="mWO-sk-IFU" id="inw-yd-8eC"/>
                     </connections>
                 </viewController>

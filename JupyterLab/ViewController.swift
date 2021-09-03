@@ -57,6 +57,8 @@ func release(socket: Int32) {
 
 class ViewController: NSViewController, WKUIDelegate, WKNavigationDelegate, ConsoleDelegate {
     @IBOutlet weak var webView: WKWebView!
+    @IBOutlet weak var progressIndicator: NSProgressIndicator!
+    
     var timer : Timer = Timer()
     var websiteController : WebsiteController = WebsiteController()
     var consoleController : ConsoleController?
@@ -96,6 +98,7 @@ class ViewController: NSViewController, WKUIDelegate, WKNavigationDelegate, Cons
             }
             
             self.webView.load(URLRequest(url: URL(string:self.url)!))
+            self.progressIndicator.stopAnimation(nil)
             self.timer.invalidate()
         }
     }
@@ -132,6 +135,7 @@ class ViewController: NSViewController, WKUIDelegate, WKNavigationDelegate, Cons
             consoleController = ConsoleController(_viewController: self)
             consoleController?.runWithUserConfig(cmd: jupyterCommand())
         }
+        progressIndicator.startAnimation(nil)
         setupTimer()
         isRunning = true
     }
