@@ -38,6 +38,17 @@ class Preferences {
     var fileNameForContextAction : String = ""
     var didStartFromContextAction : Bool = false
     
+    private var terminalUrlStore: URL? = nil
+    var terminalUrl: URL {
+        get {
+            return Preferences.shared.terminalUrlStore ?? NSWorkspace.shared.urlForApplication(withBundleIdentifier: "com.googlecode.iterm2") ??
+            NSWorkspace.shared.urlForApplication(withBundleIdentifier: "com.apple.Terminal")!
+        }
+        set {
+            terminalUrlStore = newValue;
+        }
+    }
+    
     var terminate : Bool = false
     
     init() {
@@ -56,6 +67,7 @@ class Preferences {
         settingsFile.set(useNotebooksOnFolder, forKey: "useNotebooks")
         settingsFile.set(useNotebooksOnFile, forKey: "useNotebooksOnFile")
         settingsFile.set(customFlags, forKey: "customFlags")
+        settingsFile.set(terminalUrlStore, forKey: "terminalUrlStore")
         
         baseURL = serverIP
     }
@@ -68,6 +80,7 @@ class Preferences {
         useNotebooksOnFolder = settingsFile.bool(forKey: "useNotebooks")
         useNotebooksOnFile = settingsFile.bool(forKey: "useNotebooksOnFile")
         customFlags = settingsFile.string(forKey: "customFlags") ?? ""
+        terminalUrlStore = settingsFile.url(forKey: "terminalUrlStore")
     }
     
     func resetContextAction() -> Void {

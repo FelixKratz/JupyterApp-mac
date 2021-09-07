@@ -27,13 +27,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         guard let currentViewController = NSApp.mainWindow?.contentViewController as? ViewController else {
             return
         }
-        let terminalUrl = NSWorkspace.shared.urlForApplication(withBundleIdentifier: "com.googlecode.iterm2") ??
-            NSWorkspace.shared.urlForApplication(withBundleIdentifier: "com.apple.Terminal")!
         
         if #available(macOS 10.15, *) {
-            NSWorkspace.shared.open([URL(fileURLWithPath: currentViewController.directory)], withApplicationAt: terminalUrl, configuration: NSWorkspace.OpenConfiguration())
+            NSWorkspace.shared.open([URL(fileURLWithPath: currentViewController.directory)], withApplicationAt: Preferences.shared.terminalUrl, configuration: NSWorkspace.OpenConfiguration())
         } else {
-            NSWorkspace.shared.openFile(currentViewController.directory, withApplication: terminalUrl.path)
+            NSWorkspace.shared.openFile(currentViewController.directory, withApplication: Preferences.shared.terminalUrl.path)
         }
     }
     

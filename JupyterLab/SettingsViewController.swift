@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import UniformTypeIdentifiers
 
 class SettingsViewController : NSViewController {
     @IBOutlet weak var serverIPTextBox: NSTextField!
@@ -16,6 +17,7 @@ class SettingsViewController : NSViewController {
     @IBOutlet weak var disableServerStart: NSButton!
     @IBOutlet weak var noteBooksInsteadOfLabs: NSButton!
     @IBOutlet weak var clickActionPopUpButtion: NSPopUpButton!
+    @IBOutlet weak var terminalPathControl: NSPathControl!
     
     
     override func viewDidLoad() {
@@ -39,6 +41,8 @@ class SettingsViewController : NSViewController {
         else {
             clickActionPopUpButtion.selectItem(withTitle: "Lab")
         }
+        
+        terminalPathControl.url = Preferences.shared.terminalUrl
         
         self.view.window?.styleMask.remove(.resizable)
     }
@@ -86,6 +90,13 @@ class SettingsViewController : NSViewController {
     
     @IBAction func tokenDidChange(_ sender: Any) {
         updateStorageObject()
+    }
+    
+    @IBAction func terminalDidChange(_ sender: Any) {
+        if let res = terminalPathControl.url {
+            Preferences.shared.terminalUrl = res
+            Preferences.shared.savePreferences()
+        }
     }
     
     func updateStorageObject() {
