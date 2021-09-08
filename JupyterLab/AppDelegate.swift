@@ -27,8 +27,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         guard let currentViewController = NSApp.mainWindow?.contentViewController as? ViewController else {
             return
         }
-        //let out : String = runSynchronousShellWithUserConfig(cmd: "open -a Terminal " + currentViewController.directory) ?? ""
-        _ = runSynchronousShell(launchPath: "/usr/bin/open", args: "-a", "Terminal", currentViewController.directory.replacingOccurrences(of: "\\ ", with: " ")) ?? ""
+        
+        if #available(macOS 10.15, *) {
+            NSWorkspace.shared.open([URL(fileURLWithPath: currentViewController.directory)], withApplicationAt: Preferences.shared.terminalUrl, configuration: NSWorkspace.OpenConfiguration())
+        } else {
+            NSWorkspace.shared.openFile(currentViewController.directory, withApplication: Preferences.shared.terminalUrl.path)
+        }
     }
     
     @IBAction func openFolderInFinderClicked(_ sender: Any) {
@@ -36,7 +40,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             return
         }
         //let out : String = runSynchronousShellWithUserConfig(cmd: "open " + currentViewController.directory) ?? ""
-        _ = runSynchronousShell(launchPath: "/usr/bin/open", args: currentViewController.directory.replacingOccurrences(of: "\\ ", with: " ")) ?? ""
+        _ = runSynchronousShell(launchPath: "/usr/bin/open", args: currentViewController.directory) ?? ""
     }
     
     @IBAction func showConsoleClicked(_ sender: Any) {
@@ -120,10 +124,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let type = attributes[FileAttributeKey.type] as? FileAttributeType
         if (!(type == FileAttributeType.typeDirectory)) {
             Preferences.shared.fileNameForContextAction = dropFile ? "" : (url.lastPathComponent ?? "")
-            Preferences.shared.folderPathForContextAction = url.deletingLastPathComponent?.path.replacingOccurrences(of: " ", with: "\\ ") ?? ""
+            Preferences.shared.folderPathForContextAction = url.deletingLastPathComponent?.path ?? ""
         }
         else {
-            Preferences.shared.folderPathForContextAction = url.path?.replacingOccurrences(of: " ", with: "\\ ") ?? ""
+            Preferences.shared.folderPathForContextAction = url.path ?? ""
         }
         
         let windowController : WindowController = storyBoard.instantiateController(withIdentifier: "jupyter") as! WindowController

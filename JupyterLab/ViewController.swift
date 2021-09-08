@@ -10,17 +10,55 @@ import Cocoa
 import WebKit
 
 var baseURL : String = Preferences.shared.serverIP
-var basePort : Int = Preferences.shared.serverPort - 1
 
-protocol ConsoleDelegate : class  {
+protocol ConsoleDelegate : AnyObject  {
     func getConsoleController() -> ConsoleController
     func consoleWillDisappear() -> Void
     func getTruncatedPath(count : Int) -> String
     func getViewController() -> ViewController
 }
 
+/*
+ I took this function from https://stackoverflow.com/a/49728137 but changed the adress to 127.0.0.1 so
+ the firewall doesn't ask if you want the application to accept incoming network connections.
+ */
+func checkTcpPortForListen(port: in_port_t) -> Bool {
+    let socketFileDescriptor = socket(AF_INET, SOCK_STREAM, 0)
+    if socketFileDescriptor == -1 {
+        return false
+    }
+
+    var addr = sockaddr_in()
+    let sizeOfSockkAddr = MemoryLayout<sockaddr_in>.size
+    addr.sin_len = __uint8_t(sizeOfSockkAddr)
+    addr.sin_family = sa_family_t(AF_INET)
+    addr.sin_port = Int(OSHostByteOrder()) == OSLittleEndian ? _OSSwapInt16(port) : port
+    addr.sin_addr = in_addr(s_addr: inet_addr("127.0.0.1"))
+    addr.sin_zero = (0, 0, 0, 0, 0, 0, 0, 0)
+    var bind_addr = sockaddr()
+    memcpy(&bind_addr, &addr, Int(sizeOfSockkAddr))
+
+    if Darwin.bind(socketFileDescriptor, &bind_addr, socklen_t(sizeOfSockkAddr)) == -1 {
+        release(socket: socketFileDescriptor)
+        return false
+    }
+    if listen(socketFileDescriptor, SOMAXCONN ) == -1 {
+        release(socket: socketFileDescriptor)
+        return false
+    }
+    release(socket: socketFileDescriptor)
+    return true
+}
+
+func release(socket: Int32) {
+    Darwin.shutdown(socket, SHUT_RDWR)
+    close(socket)
+}
+
 class ViewController: NSViewController, WKUIDelegate, WKNavigationDelegate, ConsoleDelegate {
     @IBOutlet weak var webView: WKWebView!
+    @IBOutlet weak var progressIndicator: NSProgressIndicator!
+    
     var timer : Timer = Timer()
     var websiteController : WebsiteController = WebsiteController()
     var consoleController : ConsoleController?
@@ -29,6 +67,7 @@ class ViewController: NSViewController, WKUIDelegate, WKNavigationDelegate, Cons
     var app : String = "lab"
     var isRunning : Bool = false
     var url : String = ""
+    var documentController: NSDocumentController = NSDocumentController();
     
     weak var consoleDataDelegate : ConsoleDataDelegate?
     
@@ -59,6 +98,7 @@ class ViewController: NSViewController, WKUIDelegate, WKNavigationDelegate, Cons
             }
             
             self.webView.load(URLRequest(url: URL(string:self.url)!))
+            self.progressIndicator.stopAnimation(nil)
             self.timer.invalidate()
         }
     }
@@ -83,7 +123,8 @@ class ViewController: NSViewController, WKUIDelegate, WKNavigationDelegate, Cons
 
         if (dialog.runModal() ==  NSApplication.ModalResponse.OK) {
             if let result = dialog.url {
-                return result.path.replacingOccurrences(of: " ", with: "\\ ")
+                documentController.noteNewRecentDocumentURL(result)
+                return result.path
             }
         }
         return ""
@@ -94,30 +135,36 @@ class ViewController: NSViewController, WKUIDelegate, WKNavigationDelegate, Cons
             consoleController = ConsoleController(_viewController: self)
             consoleController?.runWithUserConfig(cmd: jupyterCommand())
         }
+        progressIndicator.startAnimation(nil)
         setupTimer()
         isRunning = true
     }
     
     func jupyterCommand() -> String {
-        basePort += 1
+        var port = Preferences.shared.serverPort
+        
+        while (!checkTcpPortForListen(port: in_port_t(port))) {
+            port += 1;
+        }
+        
         let auth_token : String = randomString(length: 30)
-        websiteController = WebsiteController(_viewController: self, _baseURL: baseURL, _port: basePort, _token: auth_token)
+        websiteController = WebsiteController(_viewController: self, _baseURL: baseURL, _port: port, _token: auth_token)
 
         if (Preferences.shared.useNotebooksOnFolder && file == "" || (file != "" && Preferences.shared.useNotebooksOnFile)) {
             app = "notebook"
         }
         
         return "jupyter " + app
-                + " --LabApp.port=" + String(basePort)
-                + " --NotebookApp.port=" + String(basePort)
+                + " --LabApp.port=" + String(port)
+                + " --NotebookApp.port=" + String(port)
                 + " --LabApp.port_retries=0"
                 + " --NotebookApp.port_retries=0"
                 + " --LabApp.token=" + auth_token
                 + " --NotebookApp.token=" + auth_token
                 + " --LabApp.open_browser=False"
                 + " --NotebookApp.open_browser=False"
-                + " --LabApp.notebook_dir=" + directory
-                + " --NotebookApp.notebook_dir=" + directory
+                + " --LabApp.notebook_dir=\"" + directory + "\""
+                + " --NotebookApp.notebook_dir=\"" + directory + "\""
                 + " " + Preferences.shared.customFlags
     }
     
