@@ -7,6 +7,10 @@ install: $(BUILD_PATH)/Products/Applications/JupyterApp.app
 	cp -r $(BUILD_PATH)/Products/Applications/JupyterApp.app /Applications/JupyterApp.app
 	rm -rf ./build
 
+copy: $(BUILD_PATH)/Products/Applications/JupyterApp.app
+	cp -r $(BUILD_PATH)/Products/Applications/JupyterApp.app ./JupyterApp.app
+	rm -rf ./build
+
 build:
 	mkdir build
 
