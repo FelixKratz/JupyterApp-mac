@@ -5,6 +5,10 @@ $(BUILD_PATH)/Products/Applications/JupyterApp.app: build
 
 install: $(BUILD_PATH)/Products/Applications/JupyterApp.app
 	cp -r $(BUILD_PATH)/Products/Applications/JupyterApp.app /Applications/JupyterApp.app
+	rm -rf ./build
 
 build:
 	mkdir build
+
+clean:
+	rm -rf ./build
